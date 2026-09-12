@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Arquivos de design pesados (fontes de edição)
+*.psd
+*.ai
+Disigner/LOGO/pdf/
+Disigner/LOGO/jpg/
+Disigner/APLICAÇÕES/
+
+# Documentos estratégicos internos
+ANALISE-MERCADO.md
+BRIEFING.md
+ICP.md
+MAPA-PROBLEMAS.md
+OFERTA.md
+PESTEL.md
+SWOT.md
+TESE-DE-VALOR.md
+WORKFLOW.md
+Skills/
+
+# OS
+.DS_Store
+Thumbs.db
