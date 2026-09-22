@@ -103,24 +103,22 @@ h3{font-size:1.25rem}
 .reveal-delay-3{transition-delay:.3s}
 .reveal-delay-4{transition-delay:.4s}
 
-/* NAV sempre branco */
+/* NAV flutuante */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:1000;
+  width:calc(100% - 48px);max-width:1160px;
   height:var(--nav-h);
-  background:#ffffff;
-  border-bottom:1px solid rgba(0,0,0,0.08);
-  box-shadow:0 2px 16px rgba(0,0,0,0.07);
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(0,0,0,0.09);
+  border-radius:20px;
+  box-shadow:0 4px 32px rgba(0,0,0,0.10);
 }
 .nav-glass{
   display:flex;align-items:center;justify-content:space-between;
   height:100%;
-  max-width:var(--container);
-  margin:0 auto;
   padding:0 24px;
   background:transparent;
-  border:none;
-  border-radius:0;
-  box-shadow:none;
 }
 
 .nav-logo{height:30px;width:auto;display:block}
@@ -155,7 +153,7 @@ nav{
 
 /* Mobile menu white */
 .mobile-menu{
-  display:none;position:fixed;top:calc(var(--nav-h) + 4px);left:16px;right:16px;
+  display:none;position:fixed;top:calc(var(--nav-h) + 28px);left:16px;right:16px;
   background:#ffffff;
   border:1px solid rgba(0,0,0,0.08);border-radius:18px;
   z-index:99;padding:16px;flex-direction:column;gap:4px;
@@ -691,7 +689,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 0 32
     </div>
     <div class="nav-actions">
       <a href="https://app.multiatend.com.br/login" class="nav-login">Entrar</a>
-      <a href="#agendar" class="btn-nav-demo">Agendar demo</a>
       <a href="https://wa.me/5581999999999?text=Quero%20conhecer%20o%20MultiAtend" target="_blank" rel="noopener" class="btn-nav-cta">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.116 1.532 5.845L.057 23.293a.75.75 0 0 0 .92.92l5.438-1.476A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.952 9.952 0 0 1-5.127-1.42l-.368-.218-3.792 1.03 1.024-3.806-.234-.381A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Falar no WhatsApp
@@ -708,7 +705,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 0 32
   <a href="#depoimentos">Depoimentos</a>
   <a href="#blog">Blog</a>
   <a href="https://app.multiatend.com.br/login">Entrar</a>
-  <a href="#agendar">Agendar demo</a>
   <a href="https://wa.me/5581999999999?text=Quero%20conhecer%20o%20MultiAtend" target="_blank" rel="noopener" class="btn-nav-cta" style="margin-top:8px;justify-content:center;">Falar no WhatsApp</a>
 </div>
 
