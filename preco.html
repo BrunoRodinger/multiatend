@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Preços — MultiAtend</title>
-  <meta name="description" content="Planos do MultiAtend. Simples, transparente e sem surpresas. Escolha o plano ideal para sua equipe.">
+  <meta name="description" content="Compare os planos do MultiAtend. Veja todos os recursos disponíveis em cada plano e escolha o ideal para sua equipe.">
   <link rel="icon" type="image/png" href="Disigner/LOGO/png/multiatend_icone_gradiente-preto.png">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --purple:#7C3AED;
       --purple-light:#ede9fe;
+      --purple-bg:#f5f3ff;
       --gradient:linear-gradient(135deg,#7C3AED 0%,#a855f7 100%);
       --text:#0f172a;
       --text-2:#475569;
@@ -19,10 +20,10 @@
       --border:#e2e8f0;
       --radius:12px;
       --nav-h:64px;
-      --container:1100px;
+      --container:1160px;
     }
     html{scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:#f9f7ff;-webkit-font-smoothing:antialiased}
 
     /* NAV */
     nav{
@@ -47,131 +48,135 @@
 
     /* HERO */
     .pricing-hero{
-      padding:calc(var(--nav-h) + 72px) 24px 64px;
+      padding:calc(var(--nav-h) + 64px) 24px 48px;
       text-align:center;
-      background:linear-gradient(180deg,#faf5ff 0%,#ffffff 100%);
     }
     .tag{
       display:inline-flex;align-items:center;gap:6px;
       background:var(--purple-light);color:var(--purple);
       font-size:13px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:20px;
     }
-    .pricing-hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:16px}
-    .pricing-hero p{font-size:1.05rem;color:var(--text-2);max-width:500px;margin:0 auto 40px;line-height:1.7}
+    .pricing-hero h1{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:14px}
+    .pricing-hero p{font-size:1rem;color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.7}
 
-    /* TOGGLE */
-    .pricing-toggle{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:56px}
-    .toggle-label{font-size:14px;font-weight:500;color:var(--text-3);transition:color .2s}
-    .toggle-label.active{color:var(--text);font-weight:600}
-    .annual-badge{font-size:11px;font-weight:700;background:#dcfce7;color:#16a34a;padding:2px 7px;border-radius:100px;vertical-align:middle;margin-left:4px}
-    .toggle-switch{width:44px;height:24px;background:#e2e8f0;border-radius:100px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
-    .toggle-switch.on{background:var(--purple)}
-    .toggle-knob{position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
-    .toggle-switch.on .toggle-knob{transform:translateX(20px)}
-
-    /* LAYOUT */
-    .container{max-width:var(--container);margin:0 auto;padding:0 24px}
-
-    /* CARDS */
-    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;margin-bottom:40px}
-    .pricing-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:36px 32px;transition:all .25s ease;position:relative}
-    .pricing-card:hover{box-shadow:0 8px 40px rgba(0,0,0,0.10);transform:translateY(-3px)}
-    .pricing-card.popular{border-color:var(--purple);box-shadow:0 0 0 4px rgba(124,58,237,0.10),0 8px 40px rgba(124,58,237,0.18);transform:scale(1.03)}
-    .pricing-card.popular:hover{transform:scale(1.03) translateY(-3px)}
-    .popular-badge{
-      position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-      background:var(--gradient);color:#fff;font-size:12px;font-weight:700;
-      padding:5px 16px;border-radius:100px;white-space:nowrap;
-      display:flex;align-items:center;gap:5px;
+    /* COMPARISON TABLE WRAPPER */
+    .compare-wrap{
+      max-width:var(--container);margin:48px auto 80px;padding:0 24px;
     }
-    .plan-name{font-size:13px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .plan-price{display:flex;align-items:baseline;gap:4px;margin:16px 0 4px}
-    .plan-currency{font-size:20px;font-weight:600;color:var(--text)}
-    .plan-amount{font-size:3rem;font-weight:800;color:var(--text);line-height:1}
-    .plan-period{font-size:14px;color:var(--text-3)}
-    .plan-users{font-size:13px;color:var(--text-3);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-    .plan-features{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:32px}
-    .plan-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-2)}
-    .check-icon{width:20px;height:20px;background:var(--purple-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .check-icon svg{color:var(--purple)}
-    .btn-outline{
-      display:block;width:100%;text-align:center;padding:13px;
-      border:1.5px solid var(--border);border-radius:var(--radius);
-      font-size:14px;font-weight:600;color:var(--text);text-decoration:none;transition:all .2s;
-    }
-    .btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-    .btn-primary{
-      display:block;width:100%;text-align:center;padding:13px;
-      background:var(--gradient);border-radius:var(--radius);
-      font-size:14px;font-weight:600;color:#fff;text-decoration:none;
-      box-shadow:0 4px 20px rgba(124,58,237,0.4);transition:all .2s;
-    }
-    .btn-primary:hover{opacity:.9;box-shadow:0 6px 28px rgba(124,58,237,0.55)}
 
-    /* ADDON */
-    .pricing-addon{
-      background:#f8fafc;border:1.5px solid var(--border);border-radius:16px;
-      padding:24px 32px;display:flex;gap:32px;align-items:center;flex-wrap:wrap;
-      margin-bottom:72px;
+    /* STICKY HEADER */
+    .compare-table{
+      width:100%;border-collapse:separate;border-spacing:0;
+      background:#fff;border-radius:20px;overflow:hidden;
+      box-shadow:0 4px 40px rgba(124,58,237,0.10);
     }
-    .addon-title{font-size:15px;font-weight:700;color:var(--text);white-space:nowrap}
-    .addon-desc{font-size:14px;color:var(--text-2);line-height:1.6}
-    .addon-price{font-size:15px;font-weight:700;color:var(--purple);white-space:nowrap;margin-left:auto}
-
-    /* TRUST */
-    .trust-bar{
-      display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
-      padding:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-      margin-bottom:80px;
+    .compare-table thead tr th{
+      position:sticky;top:calc(var(--nav-h) + 20px);
+      background:#fff;z-index:10;
+      padding:28px 20px 24px;
+      border-bottom:2px solid var(--border);
+      vertical-align:bottom;
     }
-    .trust-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-2);font-weight:500}
-    .trust-item svg{color:var(--purple)}
-
-    /* FAQ */
-    .faq-section{padding:0 0 80px}
-    .faq-section h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;text-align:center;margin-bottom:40px}
-    .faq-list{max-width:680px;margin:0 auto}
-    .faq-item{border-bottom:1px solid var(--border)}
-    .faq-q{
-      width:100%;text-align:left;background:none;border:none;
-      padding:20px 0;font-size:15px;font-weight:600;color:var(--text);
-      cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;
-      font-family:inherit;
+    .compare-table thead tr th:first-child{
+      text-align:left;min-width:240px;
+      border-right:1px solid var(--border);
     }
-    .faq-q svg{flex-shrink:0;transition:transform .25s;color:var(--text-3)}
-    .faq-item.open .faq-q svg{transform:rotate(180deg)}
-    .faq-a{display:none;padding:0 0 20px;font-size:14px;color:var(--text-2);line-height:1.7}
-    .faq-item.open .faq-a{display:block}
+    .compare-table thead tr th.col-popular{
+      background:var(--purple-bg);
+    }
+    .col-label{
+      font-size:13px;font-weight:600;color:var(--text-3);
+      letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;
+    }
+    .col-popular-badge{
+      display:inline-flex;align-items:center;gap:4px;
+      background:var(--gradient);color:#fff;font-size:11px;font-weight:700;
+      padding:3px 10px;border-radius:100px;margin-bottom:8px;
+    }
+    .col-price{font-size:2rem;font-weight:800;color:var(--text);line-height:1;margin-bottom:2px}
+    .col-price sup{font-size:1rem;font-weight:600;vertical-align:super;line-height:0}
+    .col-price-note{font-size:12px;color:var(--text-3);margin-bottom:16px}
+    .col-cta{
+      display:block;text-align:center;padding:10px 16px;border-radius:10px;
+      font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;
+    }
+    .col-cta-outline{border:1.5px solid var(--border);color:var(--text)}
+    .col-cta-outline:hover{border-color:var(--purple);color:var(--purple)}
+    .col-cta-primary{background:var(--gradient);color:#fff;box-shadow:0 3px 14px rgba(124,58,237,0.4)}
+    .col-cta-primary:hover{opacity:.9;box-shadow:0 5px 20px rgba(124,58,237,0.55)}
+    .col-cta-ghost{border:1.5px solid var(--border);color:var(--text-2)}
+    .col-cta-ghost:hover{border-color:var(--purple);color:var(--purple)}
+    .col-enterprise{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:4px;line-height:1.2}
 
-    /* CTA BOTTOM */
+    /* CATEGORY ROWS */
+    .cat-row td{
+      background:#f8f7ff;
+      padding:14px 20px;
+      font-size:13px;font-weight:700;color:var(--text);
+      letter-spacing:.04em;
+      cursor:pointer;
+      user-select:none;
+    }
+    .cat-row td:first-child{
+      border-right:1px solid var(--border);
+      display:flex;align-items:center;gap:8px;
+    }
+    .cat-row td .cat-chevron{
+      margin-left:auto;color:var(--text-3);
+      transition:transform .25s;
+    }
+    .cat-row.open td .cat-chevron{transform:rotate(180deg)}
+
+    /* FEATURE ROWS */
+    .feat-row td{
+      padding:13px 20px;
+      border-bottom:1px solid #f1f0fa;
+      font-size:14px;color:var(--text-2);
+      vertical-align:middle;
+    }
+    .feat-row td:first-child{
+      border-right:1px solid var(--border);
+      font-size:13.5px;
+    }
+    .feat-row td.col-popular{background:var(--purple-bg)}
+    .feat-row.hidden{display:none}
+    .feat-row:last-of-type td{border-bottom:2px solid var(--border)}
+
+    /* CHECK / DASH */
+    .check{display:flex;align-items:center;justify-content:center}
+    .dash{display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:18px;line-height:1}
+    .feat-text{font-size:12px;color:var(--purple);font-weight:600;text-align:center}
+
+    /* PLAN COLUMNS ALIGNMENT */
+    .compare-table th:not(:first-child),
+    .compare-table td:not(:first-child){
+      text-align:center;
+      width:170px;
+    }
+
+    /* FOOTER / CTA */
     .cta-bottom{
       background:var(--gradient);border-radius:24px;
-      padding:64px 48px;text-align:center;margin-bottom:80px;
+      padding:64px 48px;text-align:center;margin:0 24px 80px;
     }
-    .cta-bottom h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:12px}
+    .cta-bottom h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:12px}
     .cta-bottom p{font-size:1rem;color:rgba(255,255,255,0.82);margin-bottom:32px}
     .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .btn-white{padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:700;background:#fff;color:var(--purple);text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.15);transition:all .2s}
+    .btn-white{padding:13px 26px;border-radius:var(--radius);font-size:14px;font-weight:700;background:#fff;color:var(--purple);text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.15);transition:all .2s}
     .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
-    .btn-ghost{padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:600;border:2px solid rgba(255,255,255,0.5);color:#fff;text-decoration:none;transition:all .2s}
-    .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
+    .btn-ghost-w{padding:13px 26px;border-radius:var(--radius);font-size:14px;font-weight:600;border:2px solid rgba(255,255,255,0.5);color:#fff;text-decoration:none;transition:all .2s}
+    .btn-ghost-w:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
 
-    /* FOOTER */
-    footer{text-align:center;padding:32px 24px;color:var(--text-3);font-size:13px;border-top:1px solid var(--border)}
+    footer{text-align:center;padding:32px 24px;color:var(--text-3);font-size:13px;border-top:1px solid var(--border);background:#fff}
     footer a{color:var(--text-3);text-decoration:none}
     footer a:hover{color:var(--purple)}
 
-    /* RESPONSIVE */
+    /* MOBILE */
     @media(max-width:900px){
       nav{width:calc(100% - 24px);top:12px}
-      .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto 40px}
-      .pricing-card.popular{transform:none}
-      .pricing-card.popular:hover{transform:translateY(-3px)}
-      .pricing-addon{flex-direction:column;gap:12px}
-      .addon-price{margin-left:0}
-      .trust-bar{gap:20px}
-      .cta-bottom{padding:48px 24px}
-      .cta-actions{flex-direction:column;align-items:center}
+      .compare-wrap{padding:0 12px;overflow-x:auto}
+      .compare-table{min-width:680px}
+      .cta-bottom{padding:48px 24px;margin:0 12px 60px}
     }
   </style>
 </head>
@@ -193,146 +198,206 @@
 <div class="pricing-hero">
   <div class="tag">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-    Preços
+    Planos e Preços
   </div>
-  <h1>Simples, transparente<br>e sem surpresas</h1>
-  <p>Escolha o plano certo para o tamanho da sua equipe. Sem contratos longos. Cancele quando quiser.</p>
-  <div class="pricing-toggle">
-    <span class="toggle-label active" id="label-monthly">Mensal</span>
-    <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" tabindex="0"><div class="toggle-knob"></div></div>
-    <span class="toggle-label" id="label-annual">Anual <span class="annual-badge">-14%</span></span>
-  </div>
+  <h1>Encontre o plano<br>certo para sua equipe</h1>
+  <p>Compare todos os recursos e escolha com tranquilidade. Sem contratos longos.</p>
 </div>
 
-<div class="container">
+<div class="compare-wrap">
+  <table class="compare-table" id="compareTable">
+    <thead>
+      <tr>
+        <th>
+          <div class="col-label">Recursos</div>
+        </th>
+        <th>
+          <div class="col-label">Básico</div>
+          <div class="col-price"><sup>R$</sup>697</div>
+          <div class="col-price-note">/mês · 2 usuários</div>
+          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Básico+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Falar com consultor</a>
+        </th>
+        <th>
+          <div class="col-label">Intermediário</div>
+          <div class="col-price"><sup>R$</sup>897</div>
+          <div class="col-price-note">/mês · 5 usuários</div>
+          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Intermediário+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Falar com consultor</a>
+        </th>
+        <th class="col-popular">
+          <div class="col-popular-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Mais popular
+          </div>
+          <div class="col-label">Avançado</div>
+          <div class="col-price"><sup>R$</sup>1097</div>
+          <div class="col-price-note">/mês · 15 usuários</div>
+          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Avançado+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-primary">Falar com consultor</a>
+        </th>
+        <th>
+          <div class="col-label">Empresarial</div>
+          <div class="col-enterprise">Sob<br>medida</div>
+          <div class="col-price-note">Usuários ilimitados</div>
+          <a href="https://wa.me/5581996178166?text=Quero+conhecer+o+plano+Empresarial+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-ghost">Falar com consultor</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <div class="pricing-grid">
+      <!-- 📬 OMNICHANNEL INBOX -->
+      <tr class="cat-row open" data-cat="inbox">
+        <td colspan="5">
+          <span>📬 Omnichannel Inbox</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="inbox"><td>Inbox compartilhado multiagente</td><td class="check"><!-- check --><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Histórico centralizado de conversas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Atribuição e transferência de atendimentos</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Filtros e busca avançada</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Etiquetas e segmentação de contatos</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Distribuição automática (round-robin)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Múltiplos canais WhatsApp</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>App mobile (iOS e Android)</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
-    <div class="pricing-card">
-      <div class="plan-name">Básico</div>
-      <div class="plan-price"><span class="plan-currency">R$</span><span class="plan-amount" data-monthly="697" data-annual="597">697</span><span class="plan-period">/mês</span></div>
-      <p class="plan-users">2 usuários · 1 canal WhatsApp</p>
-      <ul class="plan-features">
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Inbox compartilhado</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> API Oficial Meta</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Histórico centralizado</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Respostas rápidas</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> App mobile</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Onboarding guiado ao vivo</li>
-      </ul>
-      <a href="https://wa.me/5581996178166?text=Quero+o+plano+Básico+do+MultiAtend" target="_blank" rel="noopener" class="btn-outline">Falar com consultor</a>
-    </div>
+      <!-- 🧠 IA CAPTAIN -->
+      <tr class="cat-row open" data-cat="ia">
+        <td colspan="5">
+          <span>🧠 IA Captain (Agentes de IA)</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="ia"><td>Sugestões de resposta com IA</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="ia"><td>Agente IA autônomo (atendimento automático)</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="ia"><td>Resumo automático de conversa com IA</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="ia"><td>Classificação automática de sentimento</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="ia"><td>Base de conhecimento para IA (treinamento personalizado)</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="ia"><td>Handoff IA para humano</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
-    <div class="pricing-card popular">
-      <div class="popular-badge">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Mais escolhido
-      </div>
-      <div class="plan-name">Intermediário</div>
-      <div class="plan-price"><span class="plan-currency">R$</span><span class="plan-amount" data-monthly="897" data-annual="797">897</span><span class="plan-period">/mês</span></div>
-      <p class="plan-users">5 usuários · 1 canal WhatsApp</p>
-      <ul class="plan-features">
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Tudo do Básico</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Painel do gestor em tempo real</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Relatórios de atendimento</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Distribuição automática</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Integração CRM básica</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Kit de padronização incluso</li>
-      </ul>
-      <a href="https://wa.me/5581996178166?text=Quero+o+plano+Intermediário+do+MultiAtend" target="_blank" rel="noopener" class="btn-primary">Falar com consultor</a>
-    </div>
+      <!-- 📋 KANBAN -->
+      <tr class="cat-row open" data-cat="kanban">
+        <td colspan="5">
+          <span>📋 Kanban de Atendimento</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="kanban"><td>Visualização Kanban das conversas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Colunas personalizáveis por status</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Drag-and-drop entre etapas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Filtros por agente, equipe e etiqueta</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
-    <div class="pricing-card">
-      <div class="plan-name">Avançado</div>
-      <div class="plan-price"><span class="plan-currency">R$</span><span class="plan-amount" data-monthly="1097" data-annual="997">1097</span><span class="plan-period">/mês</span></div>
-      <p class="plan-users">15 usuários · 1 canal WhatsApp</p>
-      <ul class="plan-features">
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Tudo do Intermediário</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Relatórios avançados</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Múltiplas integrações</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> API para desenvolvedores</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> SLA prioritário</li>
-        <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Gestor de conta dedicado</li>
-      </ul>
-      <a href="https://wa.me/5581996178166?text=Quero+o+plano+Avançado+do+MultiAtend" target="_blank" rel="noopener" class="btn-outline">Falar com consultor</a>
-    </div>
+      <!-- 📊 RELATÓRIOS -->
+      <tr class="cat-row open" data-cat="reports">
+        <td colspan="5">
+          <span>📊 Relatórios e CSAT</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="reports"><td>Painel de métricas em tempo real</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="reports"><td>Relatório de desempenho por agente</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="reports"><td>CSAT (pesquisa de satisfação)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="reports"><td>Relatório de volume por canal</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="reports"><td>SLA e alertas de tempo de resposta</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="reports"><td>Exportação de relatórios (CSV / PDF)</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
+      <!-- 💬 CHAT INTERNO -->
+      <tr class="cat-row open" data-cat="chat">
+        <td colspan="5">
+          <span>💬 Chat Interno e Notas Privadas</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="chat"><td>Notas privadas na conversa</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="chat"><td>Chat interno entre agentes</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="chat"><td>Menções e notificações de equipe</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+      <!-- 📚 HELP CENTER -->
+      <tr class="cat-row open" data-cat="helpcenter">
+        <td colspan="5">
+          <span>📚 Help Center</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="helpcenter"><td>Base de conhecimento pública</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="helpcenter"><td>Artigos e categorias ilimitadas</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="helpcenter"><td>Widget de busca integrado ao chat</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="helpcenter"><td>Domínio personalizado para Help Center</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+      <!-- 🔌 API E INTEGRAÇÕES -->
+      <tr class="cat-row open" data-cat="api">
+        <td colspan="5">
+          <span>🔌 API e Integrações</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="api"><td>API REST</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>Webhooks</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>Integração com CRM (HubSpot, Salesforce etc.)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>Zapier / Make (automações)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>SSO (Single Sign-On)</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="dash col-popular"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>Integração customizada sob demanda</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="dash col-popular"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+      <!-- ✅ TAREFAS -->
+      <tr class="cat-row open" data-cat="tasks">
+        <td colspan="5">
+          <span>✅ Tarefas</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="tasks"><td>Criação de tarefas vinculadas a conversas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="tasks"><td>Atribuição e prazos de tarefas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="tasks"><td>Notificações de tarefas pendentes</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+      <!-- 📝 TEMPLATES META -->
+      <tr class="cat-row open" data-cat="templates">
+        <td colspan="5">
+          <span>📝 Templates Meta (HSM)</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="templates"><td>Envio de templates aprovados pela Meta</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="templates"><td>Templates com variáveis dinâmicas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="templates"><td>Biblioteca compartilhada de templates</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="templates"><td>Disparo em massa via templates</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+      <!-- ⚙️ GESTÃO -->
+      <tr class="cat-row open" data-cat="gestao">
+        <td colspan="5">
+          <span>⚙️ Gestão, Equipes e Suporte</span>
+          <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </td>
+      </tr>
+      <tr class="feat-row" data-cat="gestao"><td>Gestão de equipes e permissões</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="gestao"><td>Onboarding guiado ao vivo</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="gestao"><td>Suporte via chat e WhatsApp</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="gestao"><td>Gerente de conta dedicado</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="dash col-popular"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="gestao"><td>SLA garantido por contrato</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="dash col-popular"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="cta-bottom">
+  <h2>Pronto para transformar seu atendimento?</h2>
+  <p>Fale com um consultor e descubra o plano ideal para a sua equipe.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5581996178166?text=Quero%20conhecer%20o%20MultiAtend" target="_blank" rel="noopener" class="btn-white">Falar no WhatsApp</a>
+    <a href="/" class="btn-ghost-w">Conhecer o produto</a>
   </div>
-
-  <div class="pricing-addon">
-    <div>
-      <div class="addon-title">Usuários adicionais</div>
-      <div class="addon-desc">Precisa de mais usuários do que o plano oferece? Adicione quantos quiser sem mudar de plano.</div>
-    </div>
-    <div class="addon-price">+ R$ 97 / usuário / mês</div>
-  </div>
-
-  <div class="trust-bar">
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> API Oficial Meta</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Sem contrato de fidelidade</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Onboarding ao vivo no mesmo dia</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Cancele quando quiser</div>
-  </div>
-
-  <div class="faq-section">
-    <h2>Perguntas frequentes</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q">Posso testar antes de contratar?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-a">Sim. Entre em contato pelo WhatsApp e agendamos uma demonstração ao vivo com os dados reais da sua operação. Sem compromisso.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Posso mudar de plano depois?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-a">Sim, a qualquer momento. O upgrade é imediato e o downgrade entra no próximo ciclo de cobrança.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">O que acontece com meu número de WhatsApp?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-a">Seu número migra para a API Oficial da Meta. O número permanece o mesmo, todos os contatos são mantidos. O que muda é que agora fica registrado em nome da empresa e protegido contra bloqueios.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Quanto tempo leva para começar?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-a">Em menos de 24 horas. Após a contratação, agendamos um onboarding guiado ao vivo: número conectado, equipe cadastrada e respostas rápidas configuradas no mesmo dia.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Meu time precisa de treinamento?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-a">Não. O vendedor continua atendendo pelo WhatsApp como sempre, só que agora pelo app do MultiAtend. A interface é familiar e intuitiva.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-bottom">
-    <h2>Pronto para assumir o controle?</h2>
-    <p>Fale com um especialista e veja o MultiAtend com os dados da sua operação.</p>
-    <div class="cta-actions">
-      <a href="https://wa.me/5581996178166?text=Quero+conhecer+o+MultiAtend" target="_blank" rel="noopener" class="btn-white">Falar no WhatsApp</a>
-      <a href="/" class="btn-ghost">Ver o produto</a>
-    </div>
-  </div>
-
 </div>
 
 <footer>
-  <p>&copy; 2026 MultiAtend · <a href="/">Voltar ao site</a></p>
+  <p>&copy; 2025 MultiAtend · <a href="/">Início</a> · <a href="/preco">Preços</a></p>
 </footer>
 
 <script>
-  const tgl=document.getElementById('billingToggle');
-  const lm=document.getElementById('label-monthly');
-  const la=document.getElementById('label-annual');
-  let annual=false;
-  function updatePricing(){
-    document.querySelectorAll('.plan-amount').forEach(el=>el.textContent=annual?el.dataset.annual:el.dataset.monthly);
-    lm.classList.toggle('active',!annual);la.classList.toggle('active',annual);
-    tgl.classList.toggle('on',annual);tgl.setAttribute('aria-checked',annual);
-  }
-  tgl.addEventListener('click',()=>{annual=!annual;updatePricing()});
-  tgl.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();annual=!annual;updatePricing()}});
-  document.querySelectorAll('.faq-q').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const item=btn.closest('.faq-item');
-      const isOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-      if(!isOpen)item.classList.add('open');
+  // Category collapse/expand
+  document.querySelectorAll('.cat-row').forEach(function(catRow){
+    catRow.addEventListener('click', function(){
+      var cat = this.getAttribute('data-cat');
+      var isOpen = this.classList.toggle('open');
+      document.querySelectorAll('.feat-row[data-cat="'+cat+'"]').forEach(function(r){
+        r.classList.toggle('hidden', !isOpen);
+      });
     });
   });
 </script>
