@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiAtend — Plataforma de Atendimento Omnichannel | API Oficial Meta | WhatsApp para Empresas</title>
+<title>MultiAtend</title>
 <meta name="description" content="O MultiAtend centraliza WhatsApp, Instagram e outros canais em uma plataforma. Visibilidade em tempo real para o gestor. API Oficial Meta. Sem risco de bloqueio. Parceiro Meta Business. A partir de R$ 697/mês.">
 <meta name="keywords" content="plataforma atendimento omnichannel, whatsapp api oficial, api whatsapp business, gestão atendimento pme, inbox compartilhado whatsapp, multiatend, atendimento nordeste, chatwoot brasil">
 <meta name="author" content="Bruno Rodinger">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://multiatend.com.br/">
+<link rel="icon" type="image/png" sizes="32x32" href="Disigner/LOGO/png/multiatend_icone_gradiente-preto.png">
+<link rel="apple-touch-icon" href="Disigner/LOGO/png/multiatend_icone_gradiente-preto.png">
 <meta name="geo.region" content="BR-PE">
 <meta name="geo.placename" content="Recife, Pernambuco, Brasil">
 <meta name="language" content="pt-BR">
@@ -250,9 +252,34 @@ nav{
 
 /* HOW IT WORKS */
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;position:relative}
-.steps-grid::before{content:'';position:absolute;top:27px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:1px;background:linear-gradient(90deg,var(--purple),var(--blue));opacity:.3}
+.steps-grid::before{
+  content:'';position:absolute;
+  top:60px;
+  left:calc(16.66% + 28px);right:calc(16.66% + 28px);
+  height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform 1.2s cubic-bezier(0.4,0,0.2,1);
+  border-radius:2px;
+}
+.steps-grid.line-visible::before{transform:scaleX(1)}
 .step-card{text-align:center;padding:32px 20px}
-.step-num{width:56px;height:56px;border-radius:50%;background:var(--gradient);color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 4px 20px rgba(124,58,237,0.4);position:relative;z-index:1}
+.step-num{
+  width:56px;height:56px;border-radius:50%;background:var(--gradient);color:#fff;
+  font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;position:relative;z-index:1;
+  box-shadow:0 4px 20px rgba(124,58,237,0.4);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.step-card:hover .step-num{transform:scale(1.12);box-shadow:0 8px 32px rgba(124,58,237,0.65)}
+.step-num::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid rgba(124,58,237,0.3);
+  animation:step-pulse 2.4s ease-in-out infinite;
+}
+.step-card:nth-child(2) .step-num::after{animation-delay:.8s}
+.step-card:nth-child(3) .step-num::after{animation-delay:1.6s}
+@keyframes step-pulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.35);opacity:0}}
 .step-card h3{font-size:20px;margin-bottom:12px}
 .step-card p{font-size:14px;color:var(--text-3);line-height:1.6}
 
@@ -1351,7 +1378,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 0 32
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="Disigner/LOGO/svg/multiatend_horizontal_gradiente-preto.svg" alt="MultiAtend" class="footer-logo">
+        <img src="Disigner/LOGO/png/multiatend_horizontal_gradiente-branco.png" alt="MultiAtend" class="footer-logo">
         <p>Plataforma omnichannel de atendimento para PMEs nordestinas. Fundado em Recife-PE por Bruno Rodinger.</p>
         <div style="margin-top:16px">
           <img src="Disigner/imanges%20de%20produto/meta-business-partner.png" alt="Meta Business Partners" style="height:36px;width:auto;background:#fff;border-radius:6px;padding:4px 8px;display:block">
@@ -1413,6 +1440,13 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.
 // Scroll reveal
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Steps line animation
+const stepsGrid=document.querySelector('.steps-grid');
+if(stepsGrid){
+  const lineObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('line-visible');lineObs.unobserve(e.target)}})},{threshold:0.4});
+  lineObs.observe(stepsGrid);
+}
 
 // Counter
 const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,t=+el.dataset.target,s=performance.now();const u=n=>{const p=Math.min((n-s)/1600,1),ease=1-Math.pow(1-p,3);el.textContent=Math.round(ease*t);if(p<1)requestAnimationFrame(u)};requestAnimationFrame(u);cObs.unobserve(el)})},{threshold:.5});
