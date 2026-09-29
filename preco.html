@@ -6,6 +6,9 @@
   <title>Preços — MultiAtend</title>
   <meta name="description" content="Compare os planos do MultiAtend. Veja todos os recursos disponíveis em cada plano e escolha o ideal para sua equipe.">
   <link rel="icon" type="image/png" href="Disigner/LOGO/png/multiatend_icone_gradiente-preto.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -23,7 +26,7 @@
       --container:1160px;
     }
     html{scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:#f9f7ff;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:#f9f7ff;-webkit-font-smoothing:antialiased}
 
     /* NAV */
     nav{
@@ -58,6 +61,37 @@
     }
     .pricing-hero h1{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:14px}
     .pricing-hero p{font-size:1rem;color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.7}
+
+    /* HERO STATS */
+    .hero-stats{
+      display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+      margin-top:32px;padding-top:32px;border-top:1px solid var(--border);
+    }
+    .hero-stat{text-align:center}
+    .hero-stat-val{font-size:1.6rem;font-weight:800;color:var(--purple);line-height:1}
+    .hero-stat-label{font-size:12px;color:var(--text-3);margin-top:4px;font-weight:500}
+
+    /* BILLING TOGGLE */
+    .billing-wrap{
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      margin:0 auto 32px;
+    }
+    .billing-label{font-size:14px;font-weight:600;color:var(--text-2)}
+    .billing-pill{
+      position:relative;display:inline-flex;
+      background:#f1f0fa;border-radius:100px;padding:4px;
+      cursor:pointer;user-select:none;
+    }
+    .billing-pill input{position:absolute;opacity:0;pointer-events:none}
+    .pill-opt{
+      padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;
+      color:var(--text-3);transition:all .22s;position:relative;z-index:1;
+    }
+    .pill-opt.active{background:#fff;color:var(--purple);box-shadow:0 2px 8px rgba(0,0,0,.10)}
+    .billing-badge{
+      background:#dcfce7;color:#16a34a;font-size:11px;font-weight:700;
+      padding:3px 10px;border-radius:100px;
+    }
 
     /* COMPARISON TABLE WRAPPER */
     .compare-wrap{
@@ -133,6 +167,7 @@
       border-bottom:1px solid #f1f0fa;
       font-size:14px;color:var(--text-2);
       vertical-align:middle;
+      text-align:left;
     }
     .feat-row td:first-child{
       border-right:1px solid var(--border);
@@ -143,8 +178,9 @@
     .feat-row:last-of-type td{border-bottom:2px solid var(--border)}
 
     /* CHECK / DASH */
-    .check{display:flex;align-items:center;justify-content:center}
-    .dash{display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:18px;line-height:1}
+    .check{text-align:center;vertical-align:middle}
+    .check svg{display:inline-block;vertical-align:middle}
+    .dash{text-align:center;vertical-align:middle;color:var(--text-3);font-size:20px;line-height:1}
     .feat-text{font-size:12px;color:var(--purple);font-weight:600;text-align:center}
 
     /* PLAN COLUMNS ALIGNMENT */
@@ -170,8 +206,111 @@
     footer{text-align:center;padding:32px 24px;color:var(--text-3);font-size:13px;border-top:1px solid var(--border);background:#fff}
     footer a{color:var(--text-3);text-decoration:none}
     footer a:hover{color:var(--purple)}
+    .cat-icon{color:var(--purple);flex-shrink:0;vertical-align:middle}
+
+    /* CAPTAIN AI SECTION */
+    .captain-section{
+      max-width:var(--container);margin:0 auto 64px;padding:0 24px;
+    }
+    .captain-section .section-tag{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--purple-light);color:var(--purple);
+      font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;
+      margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase;
+    }
+    .captain-section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:var(--text);margin-bottom:10px}
+    .captain-section .captain-sub{font-size:.95rem;color:var(--text-2);max-width:520px;line-height:1.7;margin-bottom:32px}
+    .captain-card{
+      background:#fff;border-radius:20px;padding:32px 36px;
+      box-shadow:0 4px 32px rgba(124,58,237,0.09);
+      border:1px solid var(--border);
+    }
+    .captain-price-row{
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:16px;margin-bottom:36px;
+    }
+    .captain-price-left{}
+    .captain-price{font-size:2.4rem;font-weight:800;color:var(--text);line-height:1}
+    .captain-price span{font-size:1rem;font-weight:500;color:var(--text-3);margin-left:4px}
+    .captain-price-note{font-size:13px;color:var(--purple);font-weight:600;margin-top:6px}
+    .captain-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#0f172a;color:#fff;
+      padding:13px 24px;border-radius:12px;
+      font-size:14px;font-weight:700;text-decoration:none;
+      transition:all .2s;white-space:nowrap;
+    }
+    .captain-btn:hover{background:#1e293b;transform:translateY(-1px)}
+    .captain-features{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    }
+    .captain-feat{
+      background:#f8f7ff;border-radius:14px;padding:18px 16px;
+      border:1px solid #ede9fe;
+    }
+    .captain-feat-icon{
+      width:36px;height:36px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:10px;flex-shrink:0;
+    }
+    .captain-feat-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px}
+    .captain-feat-desc{font-size:13px;color:var(--text-2);line-height:1.5}
+
+    /* TRUST STRIP */
+    .trust-strip{
+      max-width:var(--container);margin:0 auto 64px;padding:0 24px;
+      display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    }
+    .trust-item{
+      background:#fff;border-radius:16px;padding:20px 18px;
+      border:1px solid var(--border);text-align:center;
+      box-shadow:0 2px 12px rgba(124,58,237,0.05);
+    }
+    .trust-icon{
+      width:40px;height:40px;border-radius:12px;
+      background:var(--purple-light);display:inline-flex;
+      align-items:center;justify-content:center;margin-bottom:10px;
+    }
+    .trust-item-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+    .trust-item-desc{font-size:12px;color:var(--text-3);line-height:1.5}
+
+    /* FAQ */
+    .faq-section{
+      max-width:740px;margin:0 auto 80px;padding:0 24px;
+    }
+    .faq-section h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;text-align:center;margin-bottom:8px}
+    .faq-section .faq-sub{font-size:.9rem;color:var(--text-3);text-align:center;margin-bottom:36px}
+    .faq-item{
+      border:1px solid var(--border);border-radius:12px;margin-bottom:10px;
+      overflow:hidden;background:#fff;
+    }
+    .faq-q{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 20px;cursor:pointer;user-select:none;
+      font-size:15px;font-weight:600;color:var(--text);
+      transition:color .2s;
+    }
+    .faq-q:hover{color:var(--purple)}
+    .faq-chevron{flex-shrink:0;color:var(--text-3);transition:transform .25s}
+    .faq-item.open .faq-chevron{transform:rotate(180deg)}
+    .faq-a{
+      max-height:0;overflow:hidden;transition:max-height .3s ease, padding .3s ease;
+      font-size:14px;color:var(--text-2);line-height:1.7;
+      padding:0 20px;
+    }
+    .faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
 
     /* MOBILE */
+    @media(max-width:900px){
+      .captain-features{grid-template-columns:repeat(2,1fr)}
+      .trust-strip{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      .captain-features{grid-template-columns:1fr}
+      .captain-card{padding:24px 20px}
+      .trust-strip{grid-template-columns:1fr}
+      .hero-stats{gap:24px}
+    }
     @media(max-width:900px){
       nav{width:calc(100% - 24px);top:12px}
       .compare-wrap{padding:0 12px;overflow-x:auto}
@@ -202,6 +341,19 @@
   </div>
   <h1>Encontre o plano<br>certo para sua equipe</h1>
   <p>Compare todos os recursos e escolha com tranquilidade. Sem contratos longos.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-val">+500</div><div class="hero-stat-label">Empresas ativas</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">+2M</div><div class="hero-stat-label">Conversas/mês</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">99,9%</div><div class="hero-stat-label">Uptime garantido</div></div>
+  </div>
+</div>
+
+<div class="billing-wrap">
+  <div class="billing-pill" id="billingPill">
+    <span class="pill-opt active" id="pillMonthly">Mensal</span>
+    <span class="pill-opt" id="pillAnnual">Anual</span>
+  </div>
+  <span class="billing-badge">Economize 20%</span>
 </div>
 
 <div class="compare-wrap">
@@ -213,15 +365,15 @@
         </th>
         <th>
           <div class="col-label">Básico</div>
-          <div class="col-price"><sup>R$</sup>697</div>
+          <div class="col-price"><sup>R$</sup><span class="price-val" data-monthly="697" data-annual="558">697</span></div>
           <div class="col-price-note">/mês · 2 usuários</div>
-          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Básico+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Falar com consultor</a>
+          <a href="https://wa.me/5581996178166?text=Quero+agendar+uma+demo+do+plano+Básico+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Agendar demonstração</a>
         </th>
         <th>
           <div class="col-label">Intermediário</div>
-          <div class="col-price"><sup>R$</sup>897</div>
+          <div class="col-price"><sup>R$</sup><span class="price-val" data-monthly="897" data-annual="718">897</span></div>
           <div class="col-price-note">/mês · 5 usuários</div>
-          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Intermediário+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Falar com consultor</a>
+          <a href="https://wa.me/5581996178166?text=Quero+agendar+uma+demo+do+plano+Intermediário+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-outline">Agendar demonstração</a>
         </th>
         <th class="col-popular">
           <div class="col-popular-badge">
@@ -229,15 +381,15 @@
             Mais popular
           </div>
           <div class="col-label">Avançado</div>
-          <div class="col-price"><sup>R$</sup>1097</div>
+          <div class="col-price"><sup>R$</sup><span class="price-val" data-monthly="1097" data-annual="878">1097</span></div>
           <div class="col-price-note">/mês · 15 usuários</div>
-          <a href="https://wa.me/5581996178166?text=Quero+o+plano+Avançado+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-primary">Falar com consultor</a>
+          <a href="https://wa.me/5581996178166?text=Quero+agendar+uma+demo+do+plano+Avançado+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-primary">Agendar demonstração</a>
         </th>
         <th>
           <div class="col-label">Empresarial</div>
           <div class="col-enterprise">Sob<br>medida</div>
           <div class="col-price-note">Usuários ilimitados</div>
-          <a href="https://wa.me/5581996178166?text=Quero+conhecer+o+plano+Empresarial+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-ghost">Falar com consultor</a>
+          <a href="https://wa.me/5581996178166?text=Quero+agendar+uma+demo+do+plano+Empresarial+do+MultiAtend" target="_blank" rel="noopener" class="col-cta col-cta-ghost">Agendar demonstração</a>
         </th>
       </tr>
     </thead>
@@ -246,7 +398,7 @@
       <!-- 📬 OMNICHANNEL INBOX -->
       <tr class="cat-row open" data-cat="inbox">
         <td colspan="5">
-          <span>📬 Omnichannel Inbox</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg> Omnichannel Inbox</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -255,14 +407,18 @@
       <tr class="feat-row" data-cat="inbox"><td>Atribuição e transferência de atendimentos</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="inbox"><td>Filtros e busca avançada</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="inbox"><td>Etiquetas e segmentação de contatos</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="inbox"><td>Distribuição automática (round-robin)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="inbox"><td>Múltiplos canais WhatsApp</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="inbox"><td>App mobile (iOS e Android)</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Distribuição automática (round-robin)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td>Múltiplos canais</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td style="padding-left:32px;color:var(--text-3)">↳ Conexão WhatsApp</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td style="padding-left:32px;color:var(--text-3)">↳ Instagram</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td style="padding-left:32px;color:var(--text-3)">↳ TikTok</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="inbox"><td style="padding-left:32px;color:var(--text-3)">↳ API</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
       <!-- 🧠 IA CAPTAIN -->
       <tr class="cat-row open" data-cat="ia">
         <td colspan="5">
-          <span>🧠 IA Captain (Agentes de IA)</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg> IA Captain (Agentes de IA)</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -276,19 +432,19 @@
       <!-- 📋 KANBAN -->
       <tr class="cat-row open" data-cat="kanban">
         <td colspan="5">
-          <span>📋 Kanban de Atendimento</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg> Kanban de Atendimento</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
-      <tr class="feat-row" data-cat="kanban"><td>Visualização Kanban das conversas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="kanban"><td>Colunas personalizáveis por status</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="kanban"><td>Drag-and-drop entre etapas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Visualização Kanban das conversas</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Colunas personalizáveis por status</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="kanban"><td>Drag-and-drop entre etapas</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="kanban"><td>Filtros por agente, equipe e etiqueta</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
       <!-- 📊 RELATÓRIOS -->
       <tr class="cat-row open" data-cat="reports">
         <td colspan="5">
-          <span>📊 Relatórios e CSAT</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg> Relatórios e CSAT</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -302,18 +458,18 @@
       <!-- 💬 CHAT INTERNO -->
       <tr class="cat-row open" data-cat="chat">
         <td colspan="5">
-          <span>💬 Chat Interno e Notas Privadas</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat Interno e Notas Privadas</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
-      <tr class="feat-row" data-cat="chat"><td>Notas privadas na conversa</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="chat"><td>Chat interno entre agentes</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="chat"><td>Notas privadas na conversa</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="chat"><td>Chat interno entre agentes</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="chat"><td>Menções e notificações de equipe</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
       <!-- 📚 HELP CENTER -->
       <tr class="cat-row open" data-cat="helpcenter">
         <td colspan="5">
-          <span>📚 Help Center</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Help Center</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -325,12 +481,12 @@
       <!-- 🔌 API E INTEGRAÇÕES -->
       <tr class="cat-row open" data-cat="api">
         <td colspan="5">
-          <span>🔌 API e Integrações</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> API e Integrações</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
-      <tr class="feat-row" data-cat="api"><td>API REST</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="api"><td>Webhooks</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>API REST</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="api"><td>Webhooks</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="api"><td>Integração com CRM (HubSpot, Salesforce etc.)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="api"><td>Zapier / Make (automações)</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
       <tr class="feat-row" data-cat="api"><td>SSO (Single Sign-On)</td><td class="dash"><span>—</span></td><td class="dash"><span>—</span></td><td class="dash col-popular"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
@@ -339,18 +495,18 @@
       <!-- ✅ TAREFAS -->
       <tr class="cat-row open" data-cat="tasks">
         <td colspan="5">
-          <span>✅ Tarefas</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Tarefas</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
-      <tr class="feat-row" data-cat="tasks"><td>Criação de tarefas vinculadas a conversas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="tasks"><td>Atribuição e prazos de tarefas</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-      <tr class="feat-row" data-cat="tasks"><td>Notificações de tarefas pendentes</td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="tasks"><td>Criação de tarefas vinculadas a conversas</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="tasks"><td>Atribuição e prazos de tarefas</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      <tr class="feat-row" data-cat="tasks"><td>Notificações de tarefas pendentes</td><td class="dash"><span>—</span></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check col-popular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7C3AED" opacity=".12"/><polyline points="7 12 10.5 15.5 17 9" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
 
       <!-- 📝 TEMPLATES META -->
       <tr class="cat-row open" data-cat="templates">
         <td colspan="5">
-          <span>📝 Templates Meta (HSM)</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Templates Meta (HSM)</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -362,7 +518,7 @@
       <!-- ⚙️ GESTÃO -->
       <tr class="cat-row open" data-cat="gestao">
         <td colspan="5">
-          <span>⚙️ Gestão, Equipes e Suporte</span>
+          <span><svg class="cat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Gestão, Equipes e Suporte</span>
           <svg class="cat-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </td>
       </tr>
@@ -376,11 +532,159 @@
   </table>
 </div>
 
+<div class="captain-section">
+  <div class="section-tag">Add-on</div>
+  <h2>Captain AI</h2>
+  <p class="captain-sub">Seu colega de equipe com IA, que ajuda os agentes a responder mais rápido e mantém os clientes satisfeitos mesmo quando você não está por perto.</p>
+
+  <div class="captain-card">
+    <div class="captain-price-row">
+      <div class="captain-price-left">
+        <div class="captain-price">R$ 129 <span>/ 1.000 créditos</span></div>
+        <div class="captain-price-note">Para créditos adicionais</div>
+      </div>
+      <a href="https://wa.me/5581996178166?text=Quero+saber+mais+sobre+o+Captain+AI" target="_blank" rel="noopener" class="captain-btn">
+        Saiba mais
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="captain-features">
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#ede9fe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+        </div>
+        <div class="captain-feat-name">Assistente</div>
+        <div class="captain-feat-desc">Um chatbot que responde às perguntas dos clientes 24 horas por dia</div>
+      </div>
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#fef9c3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="captain-feat-name">Copiloto</div>
+        <div class="captain-feat-desc">Mostra aos agentes o que dizer durante uma conversa</div>
+      </div>
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#fce7f3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+        </div>
+        <div class="captain-feat-name">Memórias</div>
+        <div class="captain-feat-desc">Notas geradas automaticamente sobre cada cliente a partir de conversas anteriores</div>
+      </div>
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#dbeafe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/></svg>
+        </div>
+        <div class="captain-feat-name">Sugestões de resposta</div>
+        <div class="captain-feat-desc">Redige respostas para que o agente envie com um clique</div>
+      </div>
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#d1fae5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
+        </div>
+        <div class="captain-feat-name">Resumo</div>
+        <div class="captain-feat-desc">Transforma conversas longas em um resumo rápido para os agentes</div>
+      </div>
+      <div class="captain-feat">
+        <div class="captain-feat-icon" style="background:#ede9fe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <div class="captain-feat-name">Lacuna de conteúdo</div>
+        <div class="captain-feat-desc">Encontra perguntas que o seu Help Center ainda não responde</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trust-strip">
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div class="trust-item-title">API Meta Oficial</div>
+    <div class="trust-item-desc">Parceiro oficial do WhatsApp Business API</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="trust-item-title">LGPD Compliant</div>
+    <div class="trust-item-desc">Dados protegidos conforme a Lei Geral de Proteção de Dados</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <div class="trust-item-title">99,9% Uptime</div>
+    <div class="trust-item-desc">Infraestrutura estável com monitoramento 24/7</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div class="trust-item-title">Suporte em PT-BR</div>
+    <div class="trust-item-desc">Atendimento em português por especialistas locais</div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <h2>Perguntas frequentes</h2>
+  <p class="faq-sub">Tem dúvidas? Veja as respostas mais comuns sobre os planos.</p>
+
+  <div class="faq-item open">
+    <div class="faq-q">
+      Posso mudar de plano depois?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Sim. Você pode fazer upgrade ou downgrade a qualquer momento. O ajuste é feito de forma proporcional na sua próxima fatura.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      O que são créditos do Captain AI?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Créditos são consumidos cada vez que a IA processa uma ação — sugestão de resposta, resumo de conversa, classificação de sentimento, etc. Cada plano inclui uma cota mensal e créditos extras podem ser adquiridos conforme necessário.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      O desconto anual é aplicado automaticamente?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Sim. Ao escolher o plano anual, você paga o equivalente a 10 meses e ganha 2 grátis — 20% de economia cobrada em parcela única ou em 12x sem juros.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Posso adicionar mais usuários além do limite do plano?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Sim, é possível adicionar usuários extras com um valor adicional por assento. Entre em contato com nosso time para verificar as condições do seu plano atual.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      A integração com WhatsApp já está incluída?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Sim. Todos os planos incluem integração com a API Oficial do WhatsApp Business (Meta). Canais adicionais de WhatsApp estão disponíveis a partir do plano Avançado.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      Como funciona a demonstração?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-a">Nossa demonstração é personalizada para o seu negócio. Um especialista vai apresentar a plataforma ao vivo, responder suas dúvidas e ajudar a identificar o plano ideal — sem compromisso.</div>
+  </div>
+</div>
+
 <div class="cta-bottom">
   <h2>Pronto para transformar seu atendimento?</h2>
-  <p>Fale com um consultor e descubra o plano ideal para a sua equipe.</p>
+  <p>Agende uma demonstração e descubra o plano ideal para a sua equipe.</p>
   <div class="cta-actions">
-    <a href="https://wa.me/5581996178166?text=Quero%20conhecer%20o%20MultiAtend" target="_blank" rel="noopener" class="btn-white">Falar no WhatsApp</a>
+    <a href="https://wa.me/5581996178166?text=Quero%20agendar%20uma%20demonstração%20do%20MultiAtend" target="_blank" rel="noopener" class="btn-white">Agendar demonstração</a>
     <a href="/" class="btn-ghost-w">Conhecer o produto</a>
   </div>
 </div>
@@ -398,6 +702,32 @@
       document.querySelectorAll('.feat-row[data-cat="'+cat+'"]').forEach(function(r){
         r.classList.toggle('hidden', !isOpen);
       });
+    });
+  });
+
+  // Billing toggle
+  var annual = false;
+  var pill = document.getElementById('billingPill');
+  var pillM = document.getElementById('pillMonthly');
+  var pillA = document.getElementById('pillAnnual');
+  function updateBilling(){
+    pillM.classList.toggle('active', !annual);
+    pillA.classList.toggle('active', annual);
+    document.querySelectorAll('.price-val').forEach(function(el){
+      el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
+    });
+  }
+  pill.addEventListener('click', function(e){
+    var opt = e.target.closest('.pill-opt');
+    if(!opt) return;
+    annual = opt === pillA;
+    updateBilling();
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click', function(){
+      item.classList.toggle('open');
     });
   });
 </script>

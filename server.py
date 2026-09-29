@@ -17,7 +17,9 @@ class MultiAtendHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
 
     def do_GET(self):
-        if self.path in ("/blog", "/blog/"):
+        if self.path in ("/preco", "/preco/"):
+            self.path = "/preco.html"
+        elif self.path in ("/blog", "/blog/"):
             self.path = "/blog.html"
         elif self.path.startswith("/blog/") and not self.path.endswith(".html"):
             self.path = self.path.rstrip("/") + ".html"
