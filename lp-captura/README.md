@@ -1,17 +1,19 @@
 # Captura de leads
 
-Página em `/captura` para o link enviado depois que alguém comenta a palavra-chave de um post. Cada publicação tem o próprio código em `ref`. A landing principal não usa esta página.
+Página em `/lp-captura` para o link enviado depois que alguém comenta a palavra-chave de um post. Em produção: `https://www.multiatend.com.br/lp-captura`. Cada publicação tem o próprio código em `ref`. A landing principal não usa esta página.
+
+`/captura` redireciona para `/lp-captura` e mantém a query string.
 
 ## URL
 
 ```
-/captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
+/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
 ```
 
 Exemplo completo:
 
 ```
-https://multiatend.com.br/captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
+https://www.multiatend.com.br/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
 ```
 
 Sem `ref`, o lead entra como `direto`.
@@ -63,7 +65,7 @@ Ao começar a preencher, o texto de apoio acima do formulário se recolhe. Cargo
 
 Dois checkboxes separados. Nenhum vem marcado.
 
-1. Aceite dos termos e da política de privacidade. Sem ele o envio não segue. O link abre `/captura/privacidade` (`captura/privacidade.html`), um texto base para o Bruno editar.
+1. Aceite dos termos e da política de privacidade. Sem ele o envio não segue. O link abre `/lp-captura/privacidade` (`lp-captura/privacidade.html`), um texto base para o Bruno editar. Em produção: `https://www.multiatend.com.br/lp-captura/privacidade`.
 2. Consentimento para receber informações e comunicações por WhatsApp e e-mail. Não bloqueia o envio.
 
 O payload grava `aceite_termos` e `aceite_comunicacoes` como `true` ou `false`, e `consentimento_em` com o horário do servidor no momento em que a escolha foi registrada.
@@ -118,7 +120,7 @@ O Bitrix é um caminho extra. Se o webhook do n8n responder bem e o Bitrix falha
   "utm_campaign": "processo",
   "utm_term": "PROCESSO",
   "utm_content": "reels",
-  "page_url": "https://multiatend.com.br/captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels",
+  "page_url": "https://www.multiatend.com.br/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels",
   "referrer": "https://www.instagram.com/",
   "timestamp": "2026-10-02T13:40:00.000Z",
   "received_at": "2026-10-02T13:40:00.120Z"
@@ -131,12 +133,12 @@ Resposta de sucesso: `{ "ok": true }`.
 
 ## Personalizar a página
 
-Tudo está em `captura/index.html`. A página segue a identidade do site: fundo escuro `#08080F`, roxo `#7C3AED`, gradiente azul → roxo dos botões, fonte Inter e os mesmos componentes do `index.html` (tag com ponto, card com linha em gradiente, botão `btn-primary`).
+Tudo está em `lp-captura/index.html`. A página segue a identidade do site: fundo escuro `#08080F`, roxo `#7C3AED`, gradiente azul → roxo dos botões, fonte Inter e os mesmos componentes do `index.html` (tag com ponto, card com linha em gradiente, botão `btn-primary`).
 
 - Cores e fonte: bloco `:root` no CSS. Os nomes das variáveis são os mesmos do `index.html` e do blog. Se a identidade do site mudar, atualize este bloco junto.
-- Logo: a página usa o arquivo do próprio site, `/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png` (versão com texto branco, para fundo escuro). Não há cópia em `captura/`. Se o arquivo do site mudar de lugar, ajuste o `src` aqui e em `captura/privacidade.html`.
+- Logo: a página usa o arquivo do próprio site, `/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png` (versão com texto branco, para fundo escuro). Não há cópia em `lp-captura/`. Se o arquivo do site mudar de lugar, ajuste o `src` aqui e em `lp-captura/privacidade.html`.
 - Textos: selo, título, texto de apoio, botão e mensagem de obrigado, no HTML. O texto de apoio e o selo se recolhem quando a pessoa começa a preencher.
-- Política de privacidade: `captura/privacidade.html`, no mesmo visual.
+- Política de privacidade: `lp-captura/privacidade.html`, no mesmo visual.
 - PDF ou WhatsApp depois do envio: atributo `data-proximo-link` no elemento `#config`. Vazio esconde o botão. Exemplo de WhatsApp: `https://wa.me/5581996178166`.
 
-Para ver no computador: `python3 server.py` e abra `http://localhost:8080/captura`. O endpoint `/api/lead` roda na Vercel.
+Para ver no computador: `python3 server.py` e abra `http://localhost:8080/lp-captura`. O endpoint `/api/lead` roda na Vercel.

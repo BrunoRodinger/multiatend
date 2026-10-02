@@ -1,7 +1,7 @@
 /**
  * POST /api/lead
  *
- * Recebe o formulário de /captura, valida e encaminha o lead.
+ * Recebe o formulário de /lp-captura, valida e encaminha o lead.
  * Segredos ficam só em variáveis de ambiente, nunca neste arquivo.
  *
  *   LEAD_WEBHOOK_URL     Webhook HTTPS (n8n). Recebe o JSON do lead.

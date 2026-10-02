@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/captura",
+      "destination": "/lp-captura",
+      "permanent": false
+    },
+    {
+      "source": "/captura/:path*",
+      "destination": "/lp-captura/:path*",
+      "permanent": false
+    }
+  ]
 }
