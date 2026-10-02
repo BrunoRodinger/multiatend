@@ -131,12 +131,12 @@ Resposta de sucesso: `{ "ok": true }`.
 
 ## Personalizar a página
 
-Tudo está em `captura/index.html`.
+Tudo está em `captura/index.html`. A página segue a identidade do site: fundo escuro `#08080F`, roxo `#7C3AED`, gradiente azul → roxo dos botões, fonte Inter e os mesmos componentes do `index.html` (tag com ponto, card com linha em gradiente, botão `btn-primary`).
 
-- Cores, fonte e logo: bloco `:root` no CSS.
-- Logo: `--logo-imagem: url("/captura/logo.svg");` e o arquivo em `captura/`. Enquanto isso, a página mostra a palavra Multiatend no espaço do logo.
-- Textos: título, subtítulo, botão e mensagem de obrigado, no HTML.
-- Política de privacidade: `captura/privacidade.html`.
+- Cores e fonte: bloco `:root` no CSS. Os nomes das variáveis são os mesmos do `index.html` e do blog. Se a identidade do site mudar, atualize este bloco junto.
+- Logo: a página usa o arquivo do próprio site, `/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png` (versão com texto branco, para fundo escuro). Não há cópia em `captura/`. Se o arquivo do site mudar de lugar, ajuste o `src` aqui e em `captura/privacidade.html`.
+- Textos: selo, título, texto de apoio, botão e mensagem de obrigado, no HTML. O texto de apoio e o selo se recolhem quando a pessoa começa a preencher.
+- Política de privacidade: `captura/privacidade.html`, no mesmo visual.
 - PDF ou WhatsApp depois do envio: atributo `data-proximo-link` no elemento `#config`. Vazio esconde o botão. Exemplo de WhatsApp: `https://wa.me/5581996178166`.
 
 Para ver no computador: `python3 server.py` e abra `http://localhost:8080/captura`. O endpoint `/api/lead` roda na Vercel.

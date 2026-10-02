@@ -2,134 +2,191 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f4f4f5">
-<title>Quase lá | Multiatend</title>
-<meta name="description" content="Deixe seus dados para receber o material e o retorno da Multiatend no WhatsApp.">
+<meta name="theme-color" content="#08080F">
+<title>Falta só um passo | MultiAtend</title>
+<meta name="description" content="Deixe seu contato para receber o material do post e o retorno da MultiAtend no WhatsApp.">
 <link rel="icon" href="/Disigner/LOGO/svg/multiatend_icone_gradiente-preto.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/Disigner/LOGO/png/multiatend_icone_gradiente-preto.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /*
-  MARCA — troque só este bloco.
-  Cores, fonte e logo ficam centralizados aqui.
-  Logo: --logo-imagem: url("/captura/logo.svg");
-  Roxo da marca, se quiser o botão colorido:
-    --cor-primaria: #6d28d9;
-    --cor-primaria-hover: #5b21b6;
-    --cor-foco: rgba(109, 40, 217, 0.16);
+  MARCA — mesmos tokens do index.html e do blog.
+  Se a identidade do site mudar, atualize este bloco junto.
 */
 :root {
-  --cor-fundo: #f4f4f5;
-  --cor-superficie: #ffffff;
-  --cor-texto: #18181b;
-  --cor-texto-suave: #52525b;
-  --cor-texto-apoio: #71717a;
-  --cor-borda: #e4e4e7;
-  --cor-primaria: #18181b;
-  --cor-primaria-hover: #3f3f46;
-  --cor-primaria-texto: #ffffff;
-  --cor-foco: rgba(24, 24, 27, 0.12);
-  --cor-erro: #b91c1c;
-  --cor-erro-fundo: #fef2f2;
-  --fonte: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --logo-imagem: none;
-  --logo-largura: 168px;
-  --logo-altura: 44px;
-  --raio: 12px;
-  --largura: 440px;
+  --purple: #7C3AED;
+  --purple-light: #A78BFA;
+  --blue: #3B82F6;
+  --gradient: linear-gradient(135deg, #3B82F6 0%, #7C3AED 100%);
+  --gradient-text: linear-gradient(135deg, #60A5FA, #A78BFA);
+  --bg: #08080F;
+  --bg-card: #111120;
+  --text-1: #FFFFFF;
+  --text-2: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-3: #64748B;
+  --border: rgba(124, 58, 237, 0.15);
+  --border-campo: rgba(124, 58, 237, 0.3);
+  --foco: rgba(124, 58, 237, 0.3);
+  --green: #10B981;
+  --red: #EF4444;
+  --red-light: #F87171;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(124, 58, 237, 0.1);
+  --fonte: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --largura: 480px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { color-scheme: light; }
+[hidden] { display: none !important; }
+html { color-scheme: dark; background: var(--bg); }
 body {
   margin: 0;
   min-height: 100dvh;
   font-family: var(--fonte);
-  background: var(--cor-superficie);
-  color: var(--cor-texto);
-  line-height: 1.5;
+  color: var(--text-2);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(520px 340px at 50% -140px, rgba(124, 58, 237, 0.38), transparent 70%),
+    radial-gradient(380px 300px at -120px 300px, rgba(59, 130, 246, 0.2), transparent 70%),
+    radial-gradient(340px 300px at calc(100% + 120px) 620px, rgba(124, 58, 237, 0.16), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
 }
 .pagina {
   width: 100%;
   max-width: var(--largura);
   margin: 0 auto;
-  padding: 28px 20px calc(32px + env(safe-area-inset-bottom));
+  padding: calc(24px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));
 }
-.logo {
-  width: var(--logo-largura);
-  height: var(--logo-altura);
-  margin: 0 0 28px;
+
+/* Logo e chamada */
+.topo {
   display: flex;
-  align-items: center;
-  background: var(--logo-imagem) left center / contain no-repeat;
-}
-.logo-texto {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-.logo.tem-imagem .logo-texto { visibility: hidden; }
-h1 {
-  margin: 0 0 8px;
-  font-size: 1.75rem;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  font-weight: 700;
-}
-.sub {
+  justify-content: center;
   margin: 0 0 28px;
-  color: var(--cor-texto-suave);
-  font-size: 1rem;
+  transition: margin .4s ease;
 }
-.apoio {
-  margin: 0 0 28px;
-  color: var(--cor-texto-suave);
-  font-size: 1rem;
+.logo { display: block; height: 26px; width: auto; }
+.intro { text-align: center; padding: 0 4px; }
+.recolhe {
   overflow: hidden;
   max-height: 8rem;
   opacity: 1;
   transition: max-height .4s ease, opacity .28s ease, margin .4s ease;
 }
-.logo { transition: margin .4s ease; }
-.pagina.foco .apoio {
-  max-height: 0;
-  opacity: 0;
-  margin-bottom: 0;
+.tag-linha { margin: 0 0 16px; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--purple-light);
+  font-size: 13px;
+  font-weight: 500;
 }
-.pagina.foco .logo { margin-bottom: 16px; }
+.tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple-light);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.4); } }
+h1 {
+  margin: 0 0 12px;
+  color: var(--text-1);
+  font-size: clamp(1.9rem, 8.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+h1:focus { outline: none; }
+.grad-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.apoio {
+  max-width: 360px;
+  margin: 0 auto 24px;
+  color: var(--text-2);
+  font-size: 1rem;
+}
+.pagina.foco .recolhe { max-height: 0; opacity: 0; margin-bottom: 0; }
+.pagina.foco .topo { margin-bottom: 16px; }
+
+/* Card */
+.cartao {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.cartao::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient);
+}
+
+/* Formulário */
 form { display: flex; flex-direction: column; gap: 16px; }
 .campo { display: flex; flex-direction: column; gap: 6px; }
-label { font-size: 0.875rem; font-weight: 600; }
+label { color: var(--text-1); font-size: 0.875rem; font-weight: 600; }
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
   width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid var(--cor-borda);
-  border-radius: var(--raio);
-  background: var(--cor-superficie);
-  color: var(--cor-texto);
+  min-height: 50px;
+  padding: 13px 14px;
+  border: 1px solid var(--border-campo);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text-1);
   font: 16px/1.4 var(--fonte);
   appearance: none;
+  transition: border-color .15s, box-shadow .15s;
 }
-input::placeholder { color: #a1a1aa; }
+input::placeholder { color: var(--text-3); }
 input:focus {
   outline: none;
-  border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 4px var(--cor-foco);
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px var(--foco);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover {
+  -webkit-text-fill-color: var(--text-1);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg) inset;
+  caret-color: var(--text-1);
+}
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-1);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg) inset, 0 0 0 4px var(--foco);
 }
 input[type="text"][aria-invalid="true"],
 input[type="email"][aria-invalid="true"],
 input[type="tel"][aria-invalid="true"] {
-  border-color: var(--cor-erro);
-  background: var(--cor-erro-fundo);
+  border-color: var(--red);
+  background: rgba(239, 68, 68, 0.08);
 }
-.opcional { color: var(--cor-texto-apoio); font-weight: 500; }
+.opcional { color: var(--text-muted); font-weight: 500; }
 .opcionais-botao {
   display: flex;
   align-items: center;
@@ -139,14 +196,16 @@ input[type="tel"][aria-invalid="true"] {
   padding: 4px 0;
   border: 0;
   background: transparent;
-  color: var(--cor-texto-suave);
+  color: var(--text-2);
   font: 500 15px/1.3 var(--fonte);
   text-align: left;
   cursor: pointer;
+  transition: color .2s;
 }
+.opcionais-botao:hover { color: var(--purple-light); }
 .opcionais-botao:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px var(--cor-foco);
+  box-shadow: 0 0 0 4px var(--foco);
   border-radius: 8px;
 }
 .opcionais-sinal {
@@ -173,66 +232,121 @@ input[type="tel"][aria-invalid="true"] {
   flex-direction: column;
   gap: 16px;
 }
-.opcionais.aberto .opcionais-miolo { padding-top: 12px; }
-.consentimentos { display: flex; flex-direction: column; gap: 14px; }
+.opcionais.aberto .opcionais-miolo { padding: 12px 4px 4px; margin: 0 -4px; }
+.consentimentos {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
 .check { display: flex; gap: 12px; align-items: flex-start; }
 .check input {
   width: 22px;
   height: 22px;
   margin: 1px 0 0;
-  accent-color: var(--cor-primaria);
+  accent-color: var(--purple);
   flex: none;
 }
 .check input:focus-visible {
-  outline: 2px solid var(--cor-primaria);
+  outline: 2px solid var(--purple-light);
   outline-offset: 2px;
 }
 .check label {
-  font-weight: 400;
+  color: var(--text-muted);
   font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--cor-texto-suave);
+  font-weight: 400;
+  line-height: 1.5;
 }
-.check a { color: var(--cor-texto); font-weight: 600; }
+.check a {
+  color: var(--purple-light);
+  font-weight: 600;
+  text-underline-offset: 2px;
+}
 .erro, .erro-geral {
   margin: 0;
-  color: var(--cor-erro);
+  color: var(--red-light);
   font-size: 0.8125rem;
 }
 .erro-geral {
   padding: 10px 12px;
-  border-radius: var(--raio);
-  background: var(--cor-erro-fundo);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius);
+  background: rgba(239, 68, 68, 0.1);
+  color: #FCA5A5;
 }
+
+/* Botão — mesmo .btn-primary do site */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   width: 100%;
-  min-height: 52px;
+  min-height: 54px;
   margin-top: 4px;
-  padding: 14px 18px;
+  padding: 16px 28px;
   border: 0;
-  border-radius: var(--raio);
-  background: var(--cor-primaria);
-  color: var(--cor-primaria-texto);
+  border-radius: var(--radius);
+  background: var(--gradient);
+  color: #fff;
   font: 600 16px/1 var(--fonte);
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
 }
-.btn:hover { background: var(--cor-primaria-hover); }
+.btn::after { content: "→"; font-weight: 500; }
+.btn[aria-busy="true"]::after { content: none; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124, 58, 237, 0.55); }
 .btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px var(--cor-foco);
+  box-shadow: 0 0 0 4px var(--foco), 0 4px 20px rgba(124, 58, 237, 0.4);
 }
-.btn:disabled { opacity: 0.65; cursor: progress; }
+.btn:disabled { opacity: 0.7; cursor: progress; transform: none; }
+.garantia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.garantia svg { flex: none; color: var(--green); }
+
+/* Obrigado */
+#obrigado { padding-top: 4vh; }
+#obrigado .cartao { padding: 32px 20px; text-align: center; }
+.sucesso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--green);
+}
+.sub { margin: 0; color: var(--text-2); font-size: 1rem; }
+.proximo { margin: 0; }
+#proximo-link { margin-top: 24px; }
+
+.rodape {
+  margin: 28px 0 0;
+  color: var(--text-3);
+  font-size: 12px;
+  text-align: center;
+}
+.rodape a { color: var(--text-muted); text-underline-offset: 2px; }
 .aviso {
-  margin: 14px 0 0;
-  color: var(--cor-texto-apoio);
+  margin: 14px 16px 0;
+  color: var(--text-muted);
   font-size: 0.75rem;
   text-align: center;
 }
-.proximo { margin: 20px 0 0; }
 .isca {
   position: absolute;
   left: -10000px;
@@ -241,28 +355,22 @@ input[type="tel"][aria-invalid="true"] {
   overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .apoio, .logo, .opcionais-painel, .opcionais-sinal { transition: none; }
+  .recolhe, .topo, .opcionais-painel, .opcionais-sinal, .btn { transition: none; }
+  .tag-dot { animation: none; }
+  .btn:hover { transform: none; }
 }
 @media (min-width: 640px) {
-  body {
-    display: flex;
-    align-items: center;
-    background: var(--cor-fundo);
-  }
-  .pagina {
-    margin: 24px auto;
-    padding: 40px 36px;
-    background: var(--cor-superficie);
-    border: 1px solid var(--cor-borda);
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(24, 24, 27, 0.06);
-  }
+  .pagina { padding: 56px 24px 40px; }
+  .topo { margin-bottom: 36px; }
+  .logo { height: 30px; }
+  .cartao { padding: 32px; }
+  #obrigado .cartao { padding: 40px 32px; }
 }
 </style>
 </head>
 <body>
 <!--
-  TEXTOS: edite o título, o subtítulo, o botão e a mensagem de obrigado direto aqui.
+  TEXTOS: edite o título, o texto de apoio, o botão e a mensagem de obrigado direto aqui.
   LINK DEPOIS DO ENVIO: no elemento #config, preencha data-proximo-link
   com a URL do PDF ou do WhatsApp. Deixe vazio para esconder o botão.
   Exemplo: data-proximo-link="https://wa.me/5581996178166"
@@ -270,91 +378,111 @@ input[type="tel"][aria-invalid="true"] {
 <div id="config" hidden data-proximo-link="" data-proximo-texto="Acessar o material"></div>
 
 <main class="pagina">
-  <div class="logo" id="logo">
-    <span class="logo-texto">Multiatend</span>
-  </div>
+  <header class="topo">
+    <img class="logo" src="/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png" alt="MultiAtend" width="1004" height="161">
+  </header>
 
   <div id="formulario">
-    <h1>Quase lá</h1>
-    <p class="apoio">Informe seus dados para receber o material e o retorno no WhatsApp.</p>
+    <div class="intro">
+      <div class="tag-linha recolhe">
+        <span class="tag"><span class="tag-dot" aria-hidden="true"></span>Material do post</span>
+      </div>
+      <h1>Falta só <span class="grad-text">um passo</span></h1>
+      <p class="apoio recolhe">Deixe seu contato para receber o material do post. A gente retorna pelo WhatsApp.</p>
+    </div>
 
-    <form id="form-lead" action="/api/lead" method="post" novalidate data-endpoint="/api/lead">
-      <div class="campo">
-        <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" autocomplete="name" required maxlength="120" placeholder="Maria Silva" enterkeyhint="next">
-        <p class="erro" id="erro-nome" hidden></p>
-      </div>
-      <div class="campo">
-        <label for="whatsapp">WhatsApp</label>
-        <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required maxlength="16" placeholder="(81) 99999-9999" enterkeyhint="next">
-        <p class="erro" id="erro-whatsapp" hidden></p>
-      </div>
-      <div class="campo">
-        <label for="email">E-mail</label>
-        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" spellcheck="false" placeholder="maria@gmail.com" enterkeyhint="next">
-        <p class="erro" id="erro-email" hidden></p>
-      </div>
+    <div class="cartao">
+      <form id="form-lead" action="/api/lead" method="post" novalidate data-endpoint="/api/lead">
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" required maxlength="120" placeholder="Maria Silva" enterkeyhint="next">
+          <p class="erro" id="erro-nome" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required maxlength="16" placeholder="(81) 99999-9999" enterkeyhint="next">
+          <p class="erro" id="erro-whatsapp" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" spellcheck="false" placeholder="maria@gmail.com" enterkeyhint="next">
+          <p class="erro" id="erro-email" hidden></p>
+        </div>
 
-      <div class="opcionais" id="opcionais">
-        <button type="button" class="opcionais-botao" id="opcionais-botao" aria-expanded="false" aria-controls="opcionais-painel">
-          <span>Cargo e empresa <span class="opcional">(opcional)</span></span>
-          <span class="opcionais-sinal" aria-hidden="true"></span>
-        </button>
-        <div class="opcionais-painel" id="opcionais-painel" aria-hidden="true">
-          <div class="opcionais-miolo">
-            <div class="campo">
-              <label for="cargo">Cargo <span class="opcional">(opcional)</span></label>
-              <input id="cargo" name="cargo" type="text" autocomplete="organization-title" maxlength="80" placeholder="Gerente comercial" tabindex="-1">
-            </div>
-            <div class="campo">
-              <label for="empresa">Empresa <span class="opcional">(opcional)</span></label>
-              <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="160" placeholder="Se tiver" tabindex="-1">
+        <div class="opcionais" id="opcionais">
+          <button type="button" class="opcionais-botao" id="opcionais-botao" aria-expanded="false" aria-controls="opcionais-painel">
+            <span>Cargo e empresa <span class="opcional">(opcional)</span></span>
+            <span class="opcionais-sinal" aria-hidden="true"></span>
+          </button>
+          <div class="opcionais-painel" id="opcionais-painel" aria-hidden="true">
+            <div class="opcionais-miolo">
+              <div class="campo">
+                <label for="cargo">Cargo <span class="opcional">(opcional)</span></label>
+                <input id="cargo" name="cargo" type="text" autocomplete="organization-title" maxlength="80" placeholder="Gerente comercial" tabindex="-1">
+              </div>
+              <div class="campo">
+                <label for="empresa">Empresa <span class="opcional">(opcional)</span></label>
+                <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="160" placeholder="Se tiver" tabindex="-1">
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="consentimentos">
-        <div class="check">
-          <input id="aceite_termos" name="aceite_termos" type="checkbox" value="1" aria-describedby="erro-aceite_termos">
-          <div>
-            <label for="aceite_termos">Li e aceito os <a href="/captura/privacidade" target="_blank" rel="noopener noreferrer">termos e a política de privacidade</a>.</label>
-            <p class="erro" id="erro-aceite_termos" hidden></p>
+        <div class="consentimentos">
+          <div class="check">
+            <input id="aceite_termos" name="aceite_termos" type="checkbox" value="1" aria-describedby="erro-aceite_termos">
+            <div>
+              <label for="aceite_termos">Li e aceito os <a href="/captura/privacidade" target="_blank" rel="noopener noreferrer">termos e a política de privacidade</a>.</label>
+              <p class="erro" id="erro-aceite_termos" hidden></p>
+            </div>
+          </div>
+          <div class="check">
+            <input id="aceite_comunicacoes" name="aceite_comunicacoes" type="checkbox" value="1">
+            <label for="aceite_comunicacoes">Quero receber informações e comunicações da MultiAtend por WhatsApp e e-mail.</label>
           </div>
         </div>
-        <div class="check">
-          <input id="aceite_comunicacoes" name="aceite_comunicacoes" type="checkbox" value="1">
-          <label for="aceite_comunicacoes">Quero receber informações e comunicações da Multiatend por WhatsApp e e-mail.</label>
+
+        <input type="hidden" name="ref" id="ref">
+        <input type="hidden" name="utm_source" id="utm_source">
+        <input type="hidden" name="utm_medium" id="utm_medium">
+        <input type="hidden" name="utm_campaign" id="utm_campaign">
+        <input type="hidden" name="utm_term" id="utm_term">
+        <input type="hidden" name="utm_content" id="utm_content">
+        <input type="hidden" name="page_url" id="page_url">
+        <input type="hidden" name="referrer" id="referrer">
+        <input type="hidden" name="timestamp" id="timestamp">
+
+        <div class="isca" aria-hidden="true">
+          <label for="hp_field">Não preencha</label>
+          <input id="hp_field" name="hp_field" type="text" tabindex="-1" autocomplete="off">
         </div>
-      </div>
 
-      <input type="hidden" name="ref" id="ref">
-      <input type="hidden" name="utm_source" id="utm_source">
-      <input type="hidden" name="utm_medium" id="utm_medium">
-      <input type="hidden" name="utm_campaign" id="utm_campaign">
-      <input type="hidden" name="utm_term" id="utm_term">
-      <input type="hidden" name="utm_content" id="utm_content">
-      <input type="hidden" name="page_url" id="page_url">
-      <input type="hidden" name="referrer" id="referrer">
-      <input type="hidden" name="timestamp" id="timestamp">
-
-      <div class="isca" aria-hidden="true">
-        <label for="hp_field">Não preencha</label>
-        <input id="hp_field" name="hp_field" type="text" tabindex="-1" autocomplete="off">
-      </div>
-
-      <p class="erro-geral" id="erro-geral" hidden role="alert"></p>
-      <button class="btn" id="enviar" type="submit">Enviar</button>
-    </form>
+        <p class="erro-geral" id="erro-geral" hidden role="alert"></p>
+        <button class="btn" id="enviar" type="submit">Quero o material</button>
+        <p class="garantia">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Não vendemos seus dados.
+        </p>
+      </form>
+    </div>
   </div>
 
   <div id="obrigado" hidden>
-    <h1 tabindex="-1">Recebemos seus dados</h1>
-    <p class="sub">Obrigado. Em breve falamos com você no WhatsApp.</p>
-    <p class="proximo">
-      <a class="btn" id="proximo-link" href="" hidden target="_blank" rel="noopener noreferrer">Acessar o material</a>
-    </p>
+    <div class="cartao">
+      <div class="sucesso" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h1 tabindex="-1">Tudo certo!</h1>
+      <p class="sub">Recebemos seus dados. Em breve a gente fala com você no WhatsApp.</p>
+      <p class="proximo">
+        <a class="btn" id="proximo-link" href="" hidden target="_blank" rel="noopener noreferrer">Acessar o material</a>
+      </p>
+    </div>
   </div>
+
+  <footer class="rodape">
+    © 2026 MultiAtend · <a href="/captura/privacidade" target="_blank" rel="noopener noreferrer">Política de privacidade</a>
+  </footer>
 </main>
 
 <noscript>
@@ -383,6 +511,7 @@ input[type="tel"][aria-invalid="true"] {
   var blocoForm = document.getElementById("formulario");
   var blocoObrigado = document.getElementById("obrigado");
   var whatsapp = document.getElementById("whatsapp");
+  var textoBotao = botao.textContent;
 
   function rastreioVazio() {
     return {
@@ -558,11 +687,6 @@ input[type="tel"][aria-invalid="true"] {
     blocoObrigado.querySelector("h1").focus();
   }
 
-  var estiloLogo = getComputedStyle(document.documentElement).getPropertyValue("--logo-imagem").trim();
-  if (estiloLogo && estiloLogo !== "none") {
-    document.getElementById("logo").classList.add("tem-imagem");
-  }
-
   var rastreio = resolverRastreio();
   preencherOcultos(rastreio);
 
@@ -623,7 +747,7 @@ input[type="tel"][aria-invalid="true"] {
         erroGeral.hidden = false;
         erroGeral.textContent = (resultado.corpo && resultado.corpo.error) || "Não foi possível enviar agora. Tente de novo em instantes.";
         botao.disabled = false;
-        botao.textContent = "Enviar";
+        botao.textContent = textoBotao;
         botao.removeAttribute("aria-busy");
         return;
       }
@@ -632,7 +756,7 @@ input[type="tel"][aria-invalid="true"] {
       erroGeral.hidden = false;
       erroGeral.textContent = "Não foi possível enviar agora. Tente de novo em instantes.";
       botao.disabled = false;
-      botao.textContent = "Enviar";
+      botao.textContent = textoBotao;
       botao.removeAttribute("aria-busy");
     });
   });
