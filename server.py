@@ -1,8 +1,9 @@
 """
 Servidor local MultiAtend
-  localhost:8080       -> landing page  (multiatend.com.br/)
-  localhost:8080/blog  -> pagina do blog (multiatend.com.br/blog)
-  localhost:8080/*     -> arquivos estaticos da pasta Multatend/
+  localhost:8080          -> landing page  (multiatend.com.br/)
+  localhost:8080/blog     -> pagina do blog (multiatend.com.br/blog)
+  localhost:8080/lp-captura  -> captura de leads
+  localhost:8080/*        -> arquivos estaticos da pasta Multatend/
 """
 
 import http.server
@@ -17,7 +18,25 @@ class MultiAtendHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
 
     def do_GET(self):
-        if self.path in ("/preco", "/preco/"):
+        path_only, _, query = self.path.partition("?")
+        suffix = ("?" + query) if query else ""
+        if path_only in ("/captura", "/captura/"):
+            self.send_response(307)
+            self.send_header("Location", "/lp-captura" + suffix)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+        if path_only in ("/captura/privacidade", "/captura/privacidade/"):
+            self.send_response(307)
+            self.send_header("Location", "/lp-captura/privacidade" + suffix)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+        if path_only in ("/lp-captura", "/lp-captura/"):
+            self.path = "/lp-captura/index.html" + suffix
+        elif path_only in ("/lp-captura/privacidade", "/lp-captura/privacidade/"):
+            self.path = "/lp-captura/privacidade.html" + suffix
+        elif self.path in ("/preco", "/preco/"):
             self.path = "/preco.html"
         elif self.path in ("/blog", "/blog/"):
             self.path = "/blog.html"
@@ -32,6 +51,7 @@ print("=" * 48)
 print("  MultiAtend dev server")
 print(f"  Landing page : http://localhost:{PORT}/")
 print(f"  Blog         : http://localhost:{PORT}/blog")
+print(f"  Captura      : http://localhost:{PORT}/lp-captura")
 print("=" * 48)
 print("  Ctrl+C para parar\n")
 
