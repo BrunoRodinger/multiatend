@@ -29,7 +29,7 @@ var DDDS = {
 };
 
 var MENSAGENS = {
-  nome: "Informe seu nome.",
+  nome: "Informe nome e sobrenome.",
   email: "Informe um e-mail válido.",
   whatsapp: "Informe um WhatsApp válido com DDD.",
   aceite_termos: "Aceite a política de privacidade para enviar."
@@ -109,8 +109,14 @@ function emailValido(valor) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor);
 }
 
+// Mesma regra do formulário: nome e sobrenome, só letras (com acento),
+// espaço, hífen, apóstrofo e ponto; primeira e última palavra com 2+ letras.
 function nomeValido(valor) {
-  return valor.length >= 2 && valor.length <= 120 && /\p{L}/u.test(valor);
+  if (!valor || valor.length > 120) return false;
+  if (!/^[\p{L}\p{M}' .’-]+$/u.test(valor)) return false;
+  var partes = valor.split(" ");
+  var letras = function (parte) { return parte.replace(/[^\p{L}]/gu, "").length; };
+  return partes.length >= 2 && letras(partes[0]) >= 2 && letras(partes[partes.length - 1]) >= 2;
 }
 
 function normalizarLead(entrada) {
