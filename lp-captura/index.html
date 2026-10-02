@@ -394,7 +394,7 @@ input[type="tel"][aria-invalid="true"] {
     <div class="cartao">
       <form id="form-lead" action="/api/lead" method="post" novalidate data-endpoint="/api/lead">
         <div class="campo">
-          <label for="nome">Nome</label>
+          <label for="nome">Nome e sobrenome</label>
           <input id="nome" name="nome" type="text" autocomplete="name" required maxlength="120" placeholder="Maria Silva" enterkeyhint="next">
           <p class="erro" id="erro-nome" hidden></p>
         </div>
@@ -615,14 +615,29 @@ input[type="tel"][aria-invalid="true"] {
     }
   }
 
+  // Nome e sobrenome: duas palavras ou mais, só letras (com acento),
+  // espaço, hífen, apóstrofo e ponto. Primeira e última com 2+ letras,
+  // então "Maria da Silva" passa e "Maria" ou "Maria S." não.
+  function validarNome(nome) {
+    if (!nome) return "Informe nome e sobrenome.";
+    if (!/^[\p{L}\p{M}' .’-]+$/u.test(nome)) return "Use só letras no nome e sobrenome.";
+    var partes = nome.split(" ");
+    var letras = function (parte) { return parte.replace(/[^\p{L}]/gu, "").length; };
+    if (partes.length < 2 || letras(partes[0]) < 2 || letras(partes[partes.length - 1]) < 2) {
+      return "Informe nome e sobrenome.";
+    }
+    return "";
+  }
+
   function validar() {
     var nome = document.getElementById("nome").value.replace(/\s+/g, " ").trim();
     var email = document.getElementById("email").value.trim();
     var fone = digitosTelefone(whatsapp.value);
     var ok = true;
 
-    if (nome.length < 2 || !/\p{L}/u.test(nome)) {
-      mostrarErro("nome", "Informe seu nome.");
+    var erroNome = validarNome(nome);
+    if (erroNome) {
+      mostrarErro("nome", erroNome);
       ok = false;
     } else mostrarErro("nome", "");
 
