@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f4f4f5">
+<title>Quase lá | Multiatend</title>
+<meta name="description" content="Deixe seus dados para receber o material e o retorno da Multiatend no WhatsApp.">
+<link rel="icon" href="/Disigner/LOGO/svg/multiatend_icone_gradiente-preto.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+  MARCA — troque só este bloco.
+  Cores, fonte e logo ficam centralizados aqui.
+  Logo: --logo-imagem: url("/captura/logo.svg");
+  Roxo da marca, se quiser o botão colorido:
+    --cor-primaria: #6d28d9;
+    --cor-primaria-hover: #5b21b6;
+    --cor-foco: rgba(109, 40, 217, 0.16);
+*/
+:root {
+  --cor-fundo: #f4f4f5;
+  --cor-superficie: #ffffff;
+  --cor-texto: #18181b;
+  --cor-texto-suave: #52525b;
+  --cor-texto-apoio: #71717a;
+  --cor-borda: #e4e4e7;
+  --cor-primaria: #18181b;
+  --cor-primaria-hover: #3f3f46;
+  --cor-primaria-texto: #ffffff;
+  --cor-foco: rgba(24, 24, 27, 0.12);
+  --cor-erro: #b91c1c;
+  --cor-erro-fundo: #fef2f2;
+  --fonte: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --logo-imagem: none;
+  --logo-largura: 168px;
+  --logo-altura: 44px;
+  --raio: 12px;
+  --largura: 440px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light; }
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--fonte);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.pagina {
+  width: 100%;
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 28px 20px calc(32px + env(safe-area-inset-bottom));
+}
+.logo {
+  width: var(--logo-largura);
+  height: var(--logo-altura);
+  margin: 0 0 28px;
+  display: flex;
+  align-items: center;
+  background: var(--logo-imagem) left center / contain no-repeat;
+}
+.logo-texto {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.logo.tem-imagem .logo-texto { visibility: hidden; }
+h1 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+.sub {
+  margin: 0 0 28px;
+  color: var(--cor-texto-suave);
+  font-size: 1rem;
+}
+.apoio {
+  margin: 0 0 28px;
+  color: var(--cor-texto-suave);
+  font-size: 1rem;
+  overflow: hidden;
+  max-height: 8rem;
+  opacity: 1;
+  transition: max-height .4s ease, opacity .28s ease, margin .4s ease;
+}
+.logo { transition: margin .4s ease; }
+.pagina.foco .apoio {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+.pagina.foco .logo { margin-bottom: 16px; }
+form { display: flex; flex-direction: column; gap: 16px; }
+.campo { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 0.875rem; font-weight: 600; }
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: 16px/1.4 var(--fonte);
+  appearance: none;
+}
+input::placeholder { color: #a1a1aa; }
+input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 4px var(--cor-foco);
+}
+input[type="text"][aria-invalid="true"],
+input[type="email"][aria-invalid="true"],
+input[type="tel"][aria-invalid="true"] {
+  border-color: var(--cor-erro);
+  background: var(--cor-erro-fundo);
+}
+.opcional { color: var(--cor-texto-apoio); font-weight: 500; }
+.opcionais-botao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font: 500 15px/1.3 var(--fonte);
+  text-align: left;
+  cursor: pointer;
+}
+.opcionais-botao:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--cor-foco);
+  border-radius: 8px;
+}
+.opcionais-sinal {
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .3s ease;
+  flex: none;
+}
+.opcionais.aberto .opcionais-sinal { transform: rotate(-135deg); margin-top: 4px; }
+.opcionais-painel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+.opcionais.aberto .opcionais-painel { grid-template-rows: 1fr; }
+.opcionais-miolo {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.opcionais.aberto .opcionais-miolo { padding-top: 12px; }
+.consentimentos { display: flex; flex-direction: column; gap: 14px; }
+.check { display: flex; gap: 12px; align-items: flex-start; }
+.check input {
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--cor-primaria);
+  flex: none;
+}
+.check input:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+.check label {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--cor-texto-suave);
+}
+.check a { color: var(--cor-texto); font-weight: 600; }
+.erro, .erro-geral {
+  margin: 0;
+  color: var(--cor-erro);
+  font-size: 0.8125rem;
+}
+.erro-geral {
+  padding: 10px 12px;
+  border-radius: var(--raio);
+  background: var(--cor-erro-fundo);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 4px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: var(--raio);
+  background: var(--cor-primaria);
+  color: var(--cor-primaria-texto);
+  font: 600 16px/1 var(--fonte);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: var(--cor-primaria-hover); }
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--cor-foco);
+}
+.btn:disabled { opacity: 0.65; cursor: progress; }
+.aviso {
+  margin: 14px 0 0;
+  color: var(--cor-texto-apoio);
+  font-size: 0.75rem;
+  text-align: center;
+}
+.proximo { margin: 20px 0 0; }
+.isca {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .apoio, .logo, .opcionais-painel, .opcionais-sinal { transition: none; }
+}
+@media (min-width: 640px) {
+  body {
+    display: flex;
+    align-items: center;
+    background: var(--cor-fundo);
+  }
+  .pagina {
+    margin: 24px auto;
+    padding: 40px 36px;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(24, 24, 27, 0.06);
+  }
+}
+</style>
+</head>
+<body>
+<!--
+  TEXTOS: edite o título, o subtítulo, o botão e a mensagem de obrigado direto aqui.
+  LINK DEPOIS DO ENVIO: no elemento #config, preencha data-proximo-link
+  com a URL do PDF ou do WhatsApp. Deixe vazio para esconder o botão.
+  Exemplo: data-proximo-link="https://wa.me/5581996178166"
+-->
+<div id="config" hidden data-proximo-link="" data-proximo-texto="Acessar o material"></div>
+
+<main class="pagina">
+  <div class="logo" id="logo">
+    <span class="logo-texto">Multiatend</span>
+  </div>
+
+  <div id="formulario">
+    <h1>Quase lá</h1>
+    <p class="apoio">Informe seus dados para receber o material e o retorno no WhatsApp.</p>
+
+    <form id="form-lead" action="/api/lead" method="post" novalidate data-endpoint="/api/lead">
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" autocomplete="name" required maxlength="120" placeholder="Maria Silva" enterkeyhint="next">
+        <p class="erro" id="erro-nome" hidden></p>
+      </div>
+      <div class="campo">
+        <label for="whatsapp">WhatsApp</label>
+        <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required maxlength="16" placeholder="(81) 99999-9999" enterkeyhint="next">
+        <p class="erro" id="erro-whatsapp" hidden></p>
+      </div>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" spellcheck="false" placeholder="maria@gmail.com" enterkeyhint="next">
+        <p class="erro" id="erro-email" hidden></p>
+      </div>
+
+      <div class="opcionais" id="opcionais">
+        <button type="button" class="opcionais-botao" id="opcionais-botao" aria-expanded="false" aria-controls="opcionais-painel">
+          <span>Cargo e empresa <span class="opcional">(opcional)</span></span>
+          <span class="opcionais-sinal" aria-hidden="true"></span>
+        </button>
+        <div class="opcionais-painel" id="opcionais-painel" aria-hidden="true">
+          <div class="opcionais-miolo">
+            <div class="campo">
+              <label for="cargo">Cargo <span class="opcional">(opcional)</span></label>
+              <input id="cargo" name="cargo" type="text" autocomplete="organization-title" maxlength="80" placeholder="Gerente comercial" tabindex="-1">
+            </div>
+            <div class="campo">
+              <label for="empresa">Empresa <span class="opcional">(opcional)</span></label>
+              <input id="empresa" name="empresa" type="text" autocomplete="organization" maxlength="160" placeholder="Se tiver" tabindex="-1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="consentimentos">
+        <div class="check">
+          <input id="aceite_termos" name="aceite_termos" type="checkbox" value="1" aria-describedby="erro-aceite_termos">
+          <div>
+            <label for="aceite_termos">Li e aceito os <a href="/captura/privacidade" target="_blank" rel="noopener noreferrer">termos e a política de privacidade</a>.</label>
+            <p class="erro" id="erro-aceite_termos" hidden></p>
+          </div>
+        </div>
+        <div class="check">
+          <input id="aceite_comunicacoes" name="aceite_comunicacoes" type="checkbox" value="1">
+          <label for="aceite_comunicacoes">Quero receber informações e comunicações da Multiatend por WhatsApp e e-mail.</label>
+        </div>
+      </div>
+
+      <input type="hidden" name="ref" id="ref">
+      <input type="hidden" name="utm_source" id="utm_source">
+      <input type="hidden" name="utm_medium" id="utm_medium">
+      <input type="hidden" name="utm_campaign" id="utm_campaign">
+      <input type="hidden" name="utm_term" id="utm_term">
+      <input type="hidden" name="utm_content" id="utm_content">
+      <input type="hidden" name="page_url" id="page_url">
+      <input type="hidden" name="referrer" id="referrer">
+      <input type="hidden" name="timestamp" id="timestamp">
+
+      <div class="isca" aria-hidden="true">
+        <label for="hp_field">Não preencha</label>
+        <input id="hp_field" name="hp_field" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p class="erro-geral" id="erro-geral" hidden role="alert"></p>
+      <button class="btn" id="enviar" type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <div id="obrigado" hidden>
+    <h1 tabindex="-1">Recebemos seus dados</h1>
+    <p class="sub">Obrigado. Em breve falamos com você no WhatsApp.</p>
+    <p class="proximo">
+      <a class="btn" id="proximo-link" href="" hidden target="_blank" rel="noopener noreferrer">Acessar o material</a>
+    </p>
+  </div>
+</main>
+
+<noscript>
+  <p class="aviso">Ative o JavaScript do navegador para enviar o formulário.</p>
+</noscript>
+
+<script>
+(function () {
+  var CHAVES = ["ref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  var STORAGE_KEY = "multiatend_captura";
+  var DDDS = {
+    "11": 1, "12": 1, "13": 1, "14": 1, "15": 1, "16": 1, "17": 1, "18": 1, "19": 1,
+    "21": 1, "22": 1, "24": 1, "27": 1, "28": 1,
+    "31": 1, "32": 1, "33": 1, "34": 1, "35": 1, "37": 1, "38": 1,
+    "41": 1, "42": 1, "43": 1, "44": 1, "45": 1, "46": 1, "47": 1, "48": 1, "49": 1,
+    "51": 1, "53": 1, "54": 1, "55": 1,
+    "61": 1, "62": 1, "63": 1, "64": 1, "65": 1, "66": 1, "67": 1, "68": 1, "69": 1,
+    "71": 1, "73": 1, "74": 1, "75": 1, "77": 1, "79": 1,
+    "81": 1, "82": 1, "83": 1, "84": 1, "85": 1, "86": 1, "87": 1, "88": 1, "89": 1,
+    "91": 1, "92": 1, "93": 1, "94": 1, "95": 1, "96": 1, "97": 1, "98": 1, "99": 1
+  };
+
+  var form = document.getElementById("form-lead");
+  var botao = document.getElementById("enviar");
+  var erroGeral = document.getElementById("erro-geral");
+  var blocoForm = document.getElementById("formulario");
+  var blocoObrigado = document.getElementById("obrigado");
+  var whatsapp = document.getElementById("whatsapp");
+
+  function rastreioVazio() {
+    return {
+      ref: "",
+      utm_source: "",
+      utm_medium: "",
+      utm_campaign: "",
+      utm_term: "",
+      utm_content: "",
+      page_url: "",
+      referrer: ""
+    };
+  }
+
+  function lerGuardado() {
+    try {
+      var bruto = sessionStorage.getItem(STORAGE_KEY);
+      if (!bruto) return null;
+      var salvo = JSON.parse(bruto);
+      var base = rastreioVazio();
+      Object.keys(base).forEach(function (chave) {
+        if (typeof salvo[chave] === "string") base[chave] = salvo[chave];
+      });
+      return base;
+    } catch (erro) {
+      return null;
+    }
+  }
+
+  function guardar(rastreio) {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(rastreio));
+    } catch (erro) {}
+  }
+
+  function resolverRastreio() {
+    var params = new URLSearchParams(window.location.search);
+    var veioNaUrl = false;
+    var daUrl = rastreioVazio();
+    CHAVES.forEach(function (chave) {
+      var valor = (params.get(chave) || "").trim();
+      if (valor) {
+        daUrl[chave] = valor.slice(0, 200);
+        veioNaUrl = true;
+      }
+    });
+
+    var rastreio;
+    if (veioNaUrl) {
+      rastreio = daUrl;
+      rastreio.page_url = window.location.href.slice(0, 2000);
+      rastreio.referrer = (document.referrer || "").slice(0, 2000);
+    } else {
+      rastreio = lerGuardado() || rastreioVazio();
+      if (!rastreio.page_url) rastreio.page_url = window.location.href.slice(0, 2000);
+      if (!rastreio.referrer) rastreio.referrer = (document.referrer || "").slice(0, 2000);
+    }
+    if (!rastreio.ref) rastreio.ref = "direto";
+    guardar(rastreio);
+    return rastreio;
+  }
+
+  function preencherOcultos(rastreio) {
+    CHAVES.concat(["page_url", "referrer"]).forEach(function (chave) {
+      var campo = document.getElementById(chave);
+      if (campo) campo.value = rastreio[chave] || "";
+    });
+  }
+
+  function digitosTelefone(valor) {
+    var digitos = String(valor || "").replace(/\D/g, "");
+    if ((digitos.length === 12 || digitos.length === 13) && digitos.indexOf("55") === 0) {
+      digitos = digitos.slice(2);
+    }
+    return digitos.slice(0, 11);
+  }
+
+  function mascararWhatsapp(valor) {
+    var d = digitosTelefone(valor);
+    if (!d) return "";
+    if (d.length <= 2) return "(" + d;
+    if (d.length <= 6) return "(" + d.slice(0, 2) + ") " + d.slice(2);
+    if (d.length <= 10) return "(" + d.slice(0, 2) + ") " + d.slice(2, 6) + "-" + d.slice(6);
+    return "(" + d.slice(0, 2) + ") " + d.slice(2, 7) + "-" + d.slice(7);
+  }
+
+  function mostrarErro(id, mensagem) {
+    var campo = document.getElementById(id);
+    var erro = document.getElementById("erro-" + id);
+    if (!campo || !erro) return;
+    if (mensagem) {
+      campo.setAttribute("aria-invalid", "true");
+      campo.setAttribute("aria-describedby", erro.id);
+      erro.hidden = false;
+      erro.textContent = mensagem;
+    } else {
+      campo.removeAttribute("aria-invalid");
+      campo.removeAttribute("aria-describedby");
+      erro.hidden = true;
+      erro.textContent = "";
+    }
+  }
+
+  function validar() {
+    var nome = document.getElementById("nome").value.replace(/\s+/g, " ").trim();
+    var email = document.getElementById("email").value.trim();
+    var fone = digitosTelefone(whatsapp.value);
+    var ok = true;
+
+    if (nome.length < 2 || !/\p{L}/u.test(nome)) {
+      mostrarErro("nome", "Informe seu nome.");
+      ok = false;
+    } else mostrarErro("nome", "");
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      mostrarErro("email", "Informe um e-mail válido.");
+      ok = false;
+    } else mostrarErro("email", "");
+
+    var foneOk = (fone.length === 10 || fone.length === 11) && DDDS[fone.slice(0, 2)] && (fone.length !== 11 || fone.charAt(2) === "9");
+    if (!foneOk) {
+      mostrarErro("whatsapp", "Informe um WhatsApp válido com DDD.");
+      ok = false;
+    } else mostrarErro("whatsapp", "");
+
+    if (!document.getElementById("aceite_termos").checked) {
+      mostrarErro("aceite_termos", "Aceite a política de privacidade para enviar.");
+      ok = false;
+    } else mostrarErro("aceite_termos", "");
+
+    return ok;
+  }
+
+  function textoCampo(id) {
+    return document.getElementById(id).value.replace(/\s+/g, " ").trim();
+  }
+
+  function montarPayload() {
+    document.getElementById("timestamp").value = new Date().toISOString();
+    return {
+      nome: textoCampo("nome"),
+      email: document.getElementById("email").value.trim(),
+      whatsapp: whatsapp.value.trim(),
+      cargo: textoCampo("cargo"),
+      empresa: textoCampo("empresa"),
+      aceite_termos: document.getElementById("aceite_termos").checked === true,
+      aceite_comunicacoes: document.getElementById("aceite_comunicacoes").checked === true,
+      ref: document.getElementById("ref").value,
+      utm_source: document.getElementById("utm_source").value,
+      utm_medium: document.getElementById("utm_medium").value,
+      utm_campaign: document.getElementById("utm_campaign").value,
+      utm_term: document.getElementById("utm_term").value,
+      utm_content: document.getElementById("utm_content").value,
+      page_url: document.getElementById("page_url").value,
+      referrer: document.getElementById("referrer").value,
+      timestamp: document.getElementById("timestamp").value,
+      hp_field: document.getElementById("hp_field").value
+    };
+  }
+
+  function mostrarObrigado() {
+    var config = document.getElementById("config");
+    var link = document.getElementById("proximo-link");
+    var href = (config.getAttribute("data-proximo-link") || "").trim();
+    var texto = (config.getAttribute("data-proximo-texto") || "").trim();
+    if (href) {
+      link.href = href;
+      if (texto) link.textContent = texto;
+      link.hidden = false;
+    }
+    blocoForm.hidden = true;
+    blocoObrigado.hidden = false;
+    blocoObrigado.querySelector("h1").focus();
+  }
+
+  var estiloLogo = getComputedStyle(document.documentElement).getPropertyValue("--logo-imagem").trim();
+  if (estiloLogo && estiloLogo !== "none") {
+    document.getElementById("logo").classList.add("tem-imagem");
+  }
+
+  var rastreio = resolverRastreio();
+  preencherOcultos(rastreio);
+
+  whatsapp.addEventListener("input", function () {
+    whatsapp.value = mascararWhatsapp(whatsapp.value);
+  });
+
+  function entrarEmFoco() {
+    document.querySelector(".pagina").classList.add("foco");
+  }
+
+  form.addEventListener("focusin", function (evento) {
+    if (evento.target.matches("input")) entrarEmFoco();
+  });
+
+  var opcionais = document.getElementById("opcionais");
+  var opcionaisBotao = document.getElementById("opcionais-botao");
+  var opcionaisPainel = document.getElementById("opcionais-painel");
+  opcionaisBotao.addEventListener("click", function () {
+    entrarEmFoco();
+    var aberto = !opcionais.classList.contains("aberto");
+    opcionais.classList.toggle("aberto", aberto);
+    opcionaisBotao.setAttribute("aria-expanded", aberto ? "true" : "false");
+    opcionaisPainel.setAttribute("aria-hidden", aberto ? "false" : "true");
+    var campos = opcionaisPainel.querySelectorAll("input");
+    for (var i = 0; i < campos.length; i++) {
+      if (aberto) campos[i].removeAttribute("tabindex");
+      else campos[i].setAttribute("tabindex", "-1");
+    }
+    if (aberto) document.getElementById("cargo").focus();
+  });
+
+  form.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+    erroGeral.hidden = true;
+    if (!validar()) return;
+
+    var payload = montarPayload();
+    botao.disabled = true;
+    botao.textContent = "Enviando…";
+    botao.setAttribute("aria-busy", "true");
+
+    fetch(form.getAttribute("data-endpoint") || "/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (resposta) {
+      return resposta.json().catch(function () { return {}; }).then(function (corpo) {
+        return { ok: resposta.ok, corpo: corpo };
+      });
+    }).then(function (resultado) {
+      if (!resultado.ok) {
+        if (resultado.corpo && resultado.corpo.campos) {
+          Object.keys(resultado.corpo.campos).forEach(function (campo) {
+            mostrarErro(campo, resultado.corpo.campos[campo]);
+          });
+        }
+        erroGeral.hidden = false;
+        erroGeral.textContent = (resultado.corpo && resultado.corpo.error) || "Não foi possível enviar agora. Tente de novo em instantes.";
+        botao.disabled = false;
+        botao.textContent = "Enviar";
+        botao.removeAttribute("aria-busy");
+        return;
+      }
+      mostrarObrigado();
+    }).catch(function () {
+      erroGeral.hidden = false;
+      erroGeral.textContent = "Não foi possível enviar agora. Tente de novo em instantes.";
+      botao.disabled = false;
+      botao.textContent = "Enviar";
+      botao.removeAttribute("aria-busy");
+    });
+  });
+})();
+</script>
+</body>
+</html>
