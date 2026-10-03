@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08080F">
+<title>Política de Privacidade | MultiAtend</title>
+<meta name="description" content="Política de Privacidade da MultiAtend: quais dados o site, o formulário de captura e a automação do Instagram tratam, para quê, e como pedir exclusão.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://multiatend.com.br/privacidade">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="MultiAtend">
+<meta property="og:url" content="https://multiatend.com.br/privacidade">
+<meta property="og:title" content="Política de Privacidade | MultiAtend">
+<meta property="og:description" content="Como a MultiAtend trata dados pessoais no site, no formulário de captura e na automação do Instagram.">
+<link rel="icon" href="/Disigner/LOGO/svg/multiatend_icone_gradiente-preto.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #7C3AED;
+  --purple-light: #A78BFA;
+  --bg: #08080F;
+  --bg-card: #111120;
+  --text-1: #FFFFFF;
+  --text-2: #CBD5E1;
+  --text-3: #64748B;
+  --border: rgba(124, 58, 237, 0.15);
+  --fonte: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --largura: 680px;
+  --nav-h: 72px;
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  color: var(--text-2);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(520px 340px at 50% -160px, rgba(124, 58, 237, 0.3), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
+}
+a { color: var(--purple-light); text-underline-offset: 2px; }
+a:hover { color: #C4B5FD; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--purple-light); outline-offset: 3px; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { color: #1e293b; text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--purple); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-nav-demo {
+  padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  background: transparent; color: #1e293b; border: 1px solid rgba(0, 0, 0, 0.14);
+  text-decoration: none; display: inline-flex; align-items: center; transition: all .2s;
+}
+.btn-nav-demo:hover { border-color: var(--purple); color: var(--purple); }
+.btn-nav-cta {
+  padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  background: #0f172a; color: #fff; border: none; text-decoration: none;
+  display: inline-flex; align-items: center; transition: all .2s;
+}
+.btn-nav-cta:hover { background: #1e293b; color: #fff; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 8px; background: none; border: none;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: #1e293b; border-radius: 2px; }
+.mobile-menu {
+  display: none; position: fixed; top: calc(var(--nav-h) + 8px); left: 16px; right: 16px;
+  background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 18px;
+  z-index: 999; padding: 12px; flex-direction: column; gap: 4px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: #1e293b; text-decoration: none; font-size: 15px; font-weight: 500;
+  padding: 12px 14px; border-radius: 10px; min-height: 44px;
+}
+.mobile-menu a:hover { background: rgba(124, 58, 237, 0.06); color: var(--purple); }
+
+main {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 40px + env(safe-area-inset-top)) 20px calc(72px + env(safe-area-inset-bottom));
+}
+.volta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--text-3); font-size: 14px; font-weight: 500; text-decoration: none;
+}
+.volta:hover { color: var(--purple-light); }
+.atualizacao { color: var(--text-3); font-size: 14px; margin: 8px 0 0; }
+h1, h2 { color: var(--text-1); letter-spacing: -0.02em; line-height: 1.2; }
+h1 { margin: 8px 0 12px; font-size: clamp(1.75rem, 7vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; }
+h2 {
+  margin: 36px 0 10px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 1.15rem; font-weight: 700;
+}
+p, li { color: var(--text-2); font-size: 1rem; }
+p { margin: 0 0 14px; }
+ul { margin: 0 0 14px; padding-left: 1.25em; }
+li { margin: 0 0 8px; }
+strong { color: var(--text-1); font-weight: 600; }
+#exclusao-de-dados {
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+  margin-top: 40px;
+  padding: 4px 22px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple);
+  border-radius: 16px;
+}
+#exclusao-de-dados h2 { border-top: none; margin-top: 16px; padding-top: 4px; }
+
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 40px 0 calc(28px + env(safe-area-inset-bottom));
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  max-width: 1160px; margin: 0 auto; padding: 0 24px;
+}
+.footer-logo { height: 26px; width: auto; display: block; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { color: var(--text-3); text-decoration: none; font-size: 14px; font-weight: 500; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { color: var(--text-3); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 640px) {
+  .btn-nav-demo { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+@media (min-width: 640px) {
+  main { padding-top: calc(var(--nav-h) + 56px); }
+  .nav-logo { height: 30px; }
+  p, li { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" aria-label="MultiAtend — Início">
+      <img class="nav-logo" src="/Disigner/LOGO/png/multiatend_horizontal_gradiente-branco.png" alt="MultiAtend" width="1004" height="161">
+    </a>
+    <div class="nav-links">
+      <a href="/#como-funciona">Como funciona</a>
+      <a href="/preco">Preços</a>
+      <a href="/#depoimentos">Depoimentos</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/#agendar" class="btn-nav-demo">Agendar demo</a>
+      <a href="https://app.multiatend.com.br/login" class="btn-nav-cta">Entrar</a>
+    </div>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#como-funciona">Como funciona</a>
+  <a href="/preco">Preços</a>
+  <a href="/#depoimentos">Depoimentos</a>
+  <a href="/blog">Blog</a>
+  <a href="/#agendar">Agendar demo</a>
+  <a href="https://app.multiatend.com.br/login">Entrar</a>
+</div>
+
+<main>
+  <a class="volta" href="/">← Início</a>
+  <h1>Política de Privacidade</h1>
+  <p class="atualizacao">Última atualização: outubro de 2026</p>
+  <p>Este texto explica, em linguagem direta, como a MultiAtend trata dados pessoais de quem usa o site, preenche o formulário de captura ou interage com a automação do Instagram descrita abaixo.</p>
+
+  <h2>Quem é o responsável</h2>
+  <p>A MultiAtend é a responsável pelo tratamento desses dados. A pessoa responsável é Bruno Rodinger.</p>
+  <p>Para falar sobre privacidade ou exercer um direito, escreva para <a href="mailto:contato@multiatend.com.br">contato@multiatend.com.br</a>.</p>
+
+  <h2>Quais dados são coletados</h2>
+  <p>Pelo site e pelo formulário de captura, a MultiAtend pode receber:</p>
+  <ul>
+    <li>nome;</li>
+    <li>WhatsApp;</li>
+    <li>e-mail;</li>
+    <li>cargo e empresa, somente se a pessoa preencher — são opcionais;</li>
+    <li>a origem do link, inclusive o código <strong>ref</strong> e os parâmetros UTM;</li>
+    <li>a data do envio;</li>
+    <li>as escolhas de consentimento: o aceite desta política e, em separado, a opção de receber comunicações.</li>
+  </ul>
+  <p>No agendamento de demonstração do site também entram o dia e o horário escolhidos. No atalho de conversa pelo WhatsApp entram o nome, o WhatsApp e a mensagem escrita.</p>
+
+  <h2>Para que servem</h2>
+  <p>Nome, WhatsApp e e-mail do formulário de captura são usados para responder o contato e enviar o material pedido. Cargo e empresa, quando informados, ajudam a entender o contexto da conversa.</p>
+  <p>Informações e comunicações futuras por WhatsApp ou e-mail só são enviadas se a pessoa marcar essa opção. Ela fica separada do aceite desta política e não é condição para enviar o formulário.</p>
+  <p>Os dados do agendamento e do atalho de WhatsApp servem para retornar o contato pedido. A origem do link serve para saber de qual publicação ou campanha veio o pedido.</p>
+
+  <h2>Bases legais</h2>
+  <p>O tratamento segue a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+  <ul>
+    <li>Responder o contato, enviar o material pedido e confirmar um agendamento são providências feitas a pedido da própria pessoa (art. 7º, inciso V).</li>
+    <li>O aceite da política no formulário e a opção de receber comunicações se apoiam no consentimento (art. 7º, inciso I). Essa opção pode ser retirada a qualquer momento.</li>
+    <li>Registrar a origem do link e manter o site em funcionamento se apoiam no legítimo interesse (art. 7º, inciso IX), limitado a essas finalidades.</li>
+    <li>A automação do Instagram, descrita mais abaixo, trata dados porque a pessoa pediu o material ao comentar ou enviar a palavra-chave (art. 7º, inciso V).</li>
+  </ul>
+
+  <h2>Com quem são compartilhados</h2>
+  <p>Os dados do site e do formulário são compartilhados apenas com as ferramentas usadas para prestar o serviço: o CRM, a plataforma de automação e a hospedagem do site.</p>
+  <p>A MultiAtend não vende dados pessoais e não os cede para publicidade de terceiros.</p>
+
+  <h2>Por quanto tempo</h2>
+  <p>Os dados do formulário e dos contatos feitos pelo site ficam pelo tempo necessário para responder o pedido. Para quem aceitou comunicações, ficam enquanto essa autorização valer. Quando a finalidade acaba, os dados são apagados.</p>
+  <p>Os registros técnicos da automação do Instagram são excluídos em até 30 dias. A pessoa pode pedir a exclusão antes, pelo caminho indicado abaixo. Esse pedido é atendido em até 15 dias.</p>
+
+  <h2>Direitos de quem é titular</h2>
+  <p>Pelo e-mail <a href="mailto:contato@multiatend.com.br">contato@multiatend.com.br</a>, a pessoa pode pedir:</p>
+  <ul>
+    <li>acesso aos dados;</li>
+    <li>correção de dados incompletos ou desatualizados;</li>
+    <li>exclusão;</li>
+    <li>retirada do consentimento, inclusive o das comunicações;</li>
+    <li>portabilidade, quando a lei garantir esse direito.</li>
+  </ul>
+
+  <h2>Cookies</h2>
+  <p>O site não usa cookies de análise nem de publicidade. Não há cookies próprios além do que o navegador precisa para abrir as páginas. Na página de captura, a origem do link (ref e parâmetros UTM) fica só na sessão da aba e some quando a aba é fechada. Isso não é um cookie.</p>
+
+  <h2>Automação no Instagram (@brunorodinger)</h2>
+  <p>Quando alguém comenta uma palavra-chave em uma publicação de @brunorodinger, ou envia essa palavra por mensagem direta, uma automação que usa a API oficial da Meta responde o comentário e envia uma mensagem direta com o link do material.</p>
+  <p>Nesse fluxo são tratados apenas o nome de usuário do Instagram, o texto do comentário ou da mensagem e identificadores técnicos, somente para enviar essa resposta. Esses dados não são vendidos nem usados para outra finalidade. Os registros técnicos são excluídos em até 30 dias.</p>
+
+  <section id="exclusao-de-dados">
+    <h2>Como pedir a exclusão dos seus dados</h2>
+    <p>Envie um e-mail para <a href="mailto:contato@multiatend.com.br?subject=Exclus%C3%A3o%20de%20dados">contato@multiatend.com.br</a> com o assunto <strong>Exclusão de dados</strong>. Informe o nome de usuário do Instagram ou, se o contato foi pelo formulário, o e-mail ou o WhatsApp usados nele.</p>
+    <p>A exclusão é feita em até 15 dias, com confirmação por e-mail.</p>
+    <p>As mesmas instruções estão em <a href="/exclusao-de-dados">/exclusao-de-dados</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" aria-label="MultiAtend — Início">
+      <img class="footer-logo" src="/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png" alt="MultiAtend" width="1004" height="161">
+    </a>
+    <div class="footer-links">
+      <a href="/">Início</a>
+      <a href="/preco">Preços</a>
+      <a href="/blog">Blog</a>
+      <a href="/privacidade" aria-current="page">Privacidade</a>
+      <a href="/exclusao-de-dados">Exclusão de dados</a>
+      <a href="/termos">Termos</a>
+    </div>
+    <span class="footer-copy">© 2026 MultiAtend. Todos os direitos reservados.</span>
+  </div>
+</footer>
+<script>
+(function () {
+  var botao = document.getElementById("hamburger");
+  var menu = document.getElementById("mobileMenu");
+  if (!botao || !menu) return;
+  botao.addEventListener("click", function () {
+    var aberto = menu.classList.toggle("open");
+    botao.setAttribute("aria-expanded", aberto ? "true" : "false");
+    botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+  });
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      menu.classList.remove("open");
+      botao.setAttribute("aria-expanded", "false");
+      botao.setAttribute("aria-label", "Abrir menu");
+    });
+  });
+})();
+</script>
+</body>
+</html>
