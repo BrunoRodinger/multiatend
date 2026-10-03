@@ -32,7 +32,9 @@ class MultiAtendHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Content-Length", "0")
             self.end_headers()
             return
-        if path_only in ("/lp-captura", "/lp-captura/"):
+        if path_only.startswith("/materiais/"):
+            self.path = "/public" + self.path
+        elif path_only in ("/lp-captura", "/lp-captura/"):
             self.path = "/lp-captura/index.html" + suffix
         elif path_only in ("/lp-captura/privacidade", "/lp-captura/privacidade/"):
             self.path = "/lp-captura/privacidade.html" + suffix

@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
@@ -11,6 +12,12 @@
       "source": "/captura/:path*",
       "destination": "/lp-captura/:path*",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/materiais/:path*",
+      "destination": "/public/materiais/:path*"
     }
   ]
 }

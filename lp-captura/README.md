@@ -143,7 +143,7 @@ A tabela fica em `lp-captura/materiais.js`. Cada linha liga um `ref` a um títul
 
 - Post novo: inclua uma linha com o `ref` no padrão `AAAA-MM-tema`, em minúsculas.
 - `default`: material para `ref` desconhecido ou sem `ref`.
-- PDFs: pasta `materiais/` na raiz do projeto, servida em `/materiais/...`. Não use `public/`: este projeto não tem build, e uma pasta `public` faria a Vercel publicar só o que estiver nela.
+- PDFs: pasta `public/materiais/`, servida em `/materiais/...` por um rewrite no `vercel.json`. O mesmo arquivo define `outputDirectory: "."`: sem isso, a existência de `public/` faria a Vercel publicar só essa pasta e o resto do site sairia do ar. Não remova essa linha.
 - WhatsApp: `WHATSAPP_MATERIAL` no mesmo arquivo. A mensagem pré-preenchida é "Oi Bruno, baixei o guia {título} e quero conversar."
 
 O PDF é um arquivo público: quem tiver a URL baixa sem preencher o formulário. A tela só controla quando o botão aparece.
