@@ -331,8 +331,37 @@ input[type="tel"][aria-invalid="true"] {
   color: var(--green);
 }
 .sub { margin: 0; color: var(--text-2); font-size: 1rem; }
-.proximo { margin: 0; }
-#proximo-link { margin-top: 24px; }
+.material-nome {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--text-1);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.acoes { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.acoes .btn { margin-top: 0; }
+.btn-secundario {
+  min-height: 52px;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  color: var(--text-1);
+  font-size: 15px;
+  line-height: 1.3;
+  text-align: center;
+}
+.btn-secundario::after { content: none; }
+.btn-secundario:hover {
+  border-color: var(--purple-light);
+  color: var(--purple-light);
+  background: rgba(124, 58, 237, 0.06);
+  box-shadow: none;
+}
 
 .rodape {
   margin: 28px 0 0;
@@ -370,12 +399,9 @@ input[type="tel"][aria-invalid="true"] {
 </head>
 <body>
 <!--
-  TEXTOS: edite o título, o texto de apoio, o botão e a mensagem de obrigado direto aqui.
-  LINK DEPOIS DO ENVIO: no elemento #config, preencha data-proximo-link
-  com a URL do PDF ou do WhatsApp. Deixe vazio para esconder o botão.
-  Exemplo: data-proximo-link="https://wa.me/5581996178166"
+  TEXTOS: edite o título, o texto de apoio, o botão e a tela de entrega direto aqui.
+  MATERIAL ENTREGUE: tabela em /lp-captura/materiais.js (um ref por linha).
 -->
-<div id="config" hidden data-proximo-link="" data-proximo-texto="Acessar o material"></div>
 
 <main class="pagina">
   <header class="topo">
@@ -472,11 +498,13 @@ input[type="tel"][aria-invalid="true"] {
       <div class="sucesso" aria-hidden="true">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
       </div>
-      <h1 tabindex="-1">Tudo certo!</h1>
-      <p class="sub">Recebemos seus dados. Em breve a gente fala com você no WhatsApp.</p>
-      <p class="proximo">
-        <a class="btn" id="proximo-link" href="" hidden target="_blank" rel="noopener noreferrer">Acessar o material</a>
-      </p>
+      <h1 tabindex="-1" id="entrega-titulo">Prontinho!</h1>
+      <p class="sub">Seu material está aqui:</p>
+      <p class="material-nome" id="material-nome" hidden></p>
+      <div class="acoes">
+        <a class="btn" id="baixar-link" hidden target="_blank" rel="noopener" download>Baixar o guia</a>
+        <a class="btn btn-secundario" id="whatsapp-link" hidden target="_blank" rel="noopener noreferrer">Quer ajuda para aplicar? Fala comigo no WhatsApp</a>
+      </div>
     </div>
   </div>
 
@@ -489,6 +517,7 @@ input[type="tel"][aria-invalid="true"] {
   <p class="aviso">Ative o JavaScript do navegador para enviar o formulário.</p>
 </noscript>
 
+<script src="/lp-captura/materiais.js"></script>
 <script>
 (function () {
   var CHAVES = ["ref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
@@ -687,15 +716,34 @@ input[type="tel"][aria-invalid="true"] {
     };
   }
 
-  function mostrarObrigado() {
-    var config = document.getElementById("config");
-    var link = document.getElementById("proximo-link");
-    var href = (config.getAttribute("data-proximo-link") || "").trim();
-    var texto = (config.getAttribute("data-proximo-texto") || "").trim();
-    if (href) {
-      link.href = href;
-      if (texto) link.textContent = texto;
-      link.hidden = false;
+  // Material do ref (URL ou sessionStorage); ref desconhecido ou "direto" usa o default.
+  function materialDoRef(ref) {
+    var tabela = window.MATERIAIS || {};
+    var chave = String(ref || "").trim().toLowerCase();
+    return tabela[chave] || tabela["default"] || null;
+  }
+
+  // Só roda depois de /api/lead responder sucesso: o link do PDF não existe antes disso.
+  function mostrarObrigado(primeiroNome) {
+    var material = materialDoRef(rastreio.ref);
+    document.getElementById("entrega-titulo").textContent = primeiroNome ? "Prontinho, " + primeiroNome + "!" : "Prontinho!";
+
+    var whatsappLink = document.getElementById("whatsapp-link");
+    var numero = String(window.WHATSAPP_MATERIAL || "").replace(/\D/g, "");
+    if (material) {
+      var nomeMaterial = document.getElementById("material-nome");
+      nomeMaterial.textContent = material.titulo;
+      nomeMaterial.hidden = false;
+      var baixar = document.getElementById("baixar-link");
+      baixar.href = material.arquivo;
+      baixar.hidden = false;
+    }
+    if (numero) {
+      var mensagem = material
+        ? "Oi Bruno, baixei o guia " + material.titulo + " e quero conversar."
+        : "Oi Bruno, quero conversar.";
+      whatsappLink.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+      whatsappLink.hidden = false;
     }
     blocoForm.hidden = true;
     blocoObrigado.hidden = false;
@@ -766,7 +814,7 @@ input[type="tel"][aria-invalid="true"] {
         botao.removeAttribute("aria-busy");
         return;
       }
-      mostrarObrigado();
+      mostrarObrigado(payload.nome.split(" ")[0]);
     }).catch(function () {
       erroGeral.hidden = false;
       erroGeral.textContent = "Não foi possível enviar agora. Tente de novo em instantes.";
