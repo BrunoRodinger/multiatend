@@ -50,7 +50,7 @@ Um refresh ou uma ida a outra página na mesma aba não apaga o código. Um link
 
 Obrigatórios:
 
-- Nome
+- Nome e sobrenome. Pelo menos duas palavras, só letras (acentos valem), espaço, hífen, apóstrofo e ponto. A primeira e a última palavra precisam ter 2 letras ou mais: "Maria da Silva" e "João P. Silva" passam; "Maria", "Maria S." e "Maria 123" não. A mesma regra roda no `/api/lead`.
 - WhatsApp, com máscara brasileira
 - E-mail. Vale qualquer domínio, inclusive Gmail, Hotmail, Outlook e outros e-mails pessoais
 
