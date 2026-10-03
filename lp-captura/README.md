@@ -131,6 +131,23 @@ O Bitrix é um caminho extra. Se o webhook do n8n responder bem e o Bitrix falha
 
 Resposta de sucesso: `{ "ok": true }`.
 
+## Material entregue depois do envio
+
+Quando `/api/lead` responde sucesso, a página troca o formulário pela tela de entrega: "Prontinho, {primeiro nome}! Seu material está aqui:", o título do material, o botão "Baixar o guia" e o botão "Quer ajuda para aplicar? Fala comigo no WhatsApp". Se o envio falhar, a página mostra o erro e o link do PDF nem é montado.
+
+A tabela fica em `lp-captura/materiais.js`. Cada linha liga um `ref` a um título e a um PDF:
+
+```js
+"2026-10-bpmn": { titulo: "Mapeie seu processo de vendas com o Claude e BPMN", arquivo: "/materiais/guia-processo-vendas-claude-bpmn.pdf" },
+```
+
+- Post novo: inclua uma linha com o `ref` no padrão `AAAA-MM-tema`, em minúsculas.
+- `default`: material para `ref` desconhecido ou sem `ref`.
+- PDFs: pasta `materiais/` na raiz do projeto, servida em `/materiais/...`. Não use `public/`: este projeto não tem build, e uma pasta `public` faria a Vercel publicar só o que estiver nela.
+- WhatsApp: `WHATSAPP_MATERIAL` no mesmo arquivo. A mensagem pré-preenchida é "Oi Bruno, baixei o guia {título} e quero conversar."
+
+O PDF é um arquivo público: quem tiver a URL baixa sem preencher o formulário. A tela só controla quando o botão aparece.
+
 ## Personalizar a página
 
 Tudo está em `lp-captura/index.html`. A página segue a identidade do site: fundo escuro `#08080F`, roxo `#7C3AED`, gradiente azul → roxo dos botões, fonte Inter e os mesmos componentes do `index.html` (tag com ponto, card com linha em gradiente, botão `btn-primary`).
@@ -139,6 +156,5 @@ Tudo está em `lp-captura/index.html`. A página segue a identidade do site: fun
 - Logo: a página usa o arquivo do próprio site, `/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png` (versão com texto branco, para fundo escuro). Não há cópia em `lp-captura/`. Se o arquivo do site mudar de lugar, ajuste o `src` aqui e em `lp-captura/privacidade.html`.
 - Textos: selo, título, texto de apoio, botão e mensagem de obrigado, no HTML. O texto de apoio e o selo se recolhem quando a pessoa começa a preencher.
 - Política de privacidade: `lp-captura/privacidade.html`, no mesmo visual.
-- PDF ou WhatsApp depois do envio: atributo `data-proximo-link` no elemento `#config`. Vazio esconde o botão. Exemplo de WhatsApp: `https://wa.me/5581996178166`.
 
 Para ver no computador: `python3 server.py` e abra `http://localhost:8080/lp-captura`. O endpoint `/api/lead` roda na Vercel.
