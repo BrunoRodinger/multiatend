@@ -7,28 +7,33 @@ Página em `/lp-captura` para o link enviado depois que alguém comenta a palavr
 ## URL
 
 ```
-/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
+/lp-captura?ref=2026-10-bpmn&utm_source=instagram&utm_medium=organico&utm_campaign=bpmn&utm_term=PROCESSOS&utm_content=reels
 ```
 
 Exemplo completo:
 
 ```
-https://www.multiatend.com.br/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels
+https://www.multiatend.com.br/lp-captura?ref=2026-10-bpmn&utm_source=instagram&utm_medium=organico&utm_campaign=bpmn&utm_term=PROCESSOS&utm_content=reels
 ```
 
 Sem `ref`, o lead entra como `direto`.
 
 ## Código de um post novo
 
-Use um código por publicação, em maiúsculas, com hífen:
+O `ref` segue o padrão `AAAA-MM-tema`: ano, mês da publicação e um tema curto.
 
 | Post | ref |
 | --- | --- |
-| Primeiro post | `POST-01` |
-| Segundo post | `POST-02` |
-| Terceiro post | `POST-03` |
+| Guia de processo de vendas com Claude e BPMN (out/2026) | `2026-10-bpmn` |
+| Um post sobre funil no WhatsApp (nov/2026) | `2026-11-funil-whatsapp` |
+| Segundo post sobre funil no mesmo mês | `2026-11-funil-whatsapp-2` |
 
-Não reutilize o código. O título do lead no Bitrix começa com esse `ref`.
+Regras:
+
+- Só minúsculas, números e hífen. Sem acento, sem espaço. A API remove o que estiver fora disso, e o ref chegaria ao Bitrix diferente do que está em `materiais.js`.
+- Tema com uma ou duas palavras. O ref aparece no link do lead e no título do lead no Bitrix (`2026-10-bpmn · Maria Silva`).
+- Tema repetido no mesmo mês ganha sufixo `-2`, `-3`.
+- Ref publicado não se reaproveita. Material novo, ref novo.
 
 ## UTMs recomendados
 
@@ -36,8 +41,8 @@ Não reutilize o código. O título do lead no Bitrix começa com esse `ref`.
 | --- | --- | --- |
 | `utm_source` | `instagram` | Rede ou origem (`instagram`, `facebook`, `whatsapp`) |
 | `utm_medium` | `organico` | Tipo (`organico`, `pago`, `stories`) |
-| `utm_campaign` | `processo` | Tema da campanha ou do post |
-| `utm_term` | `PROCESSO` | Palavra-chave que a pessoa comentou |
+| `utm_campaign` | `bpmn` | Tema da campanha ou do post (pode repetir o tema do `ref`) |
+| `utm_term` | `PROCESSOS` | Palavra-chave que a pessoa comentou |
 | `utm_content` | `reels` | Formato do criativo (`reels`, `carrossel`, `stories`) |
 
 ## Como o rastreio funciona
@@ -89,7 +94,7 @@ O Bitrix é um caminho extra. Se o webhook do n8n responder bem e o Bitrix falha
 
 | Campo | Valor |
 | --- | --- |
-| `TITLE` | `POST-01 · Maria Silva` |
+| `TITLE` | `2026-10-bpmn · Maria Silva` |
 | `NAME` / `LAST_NAME` | Primeiro nome e o restante |
 | `EMAIL` | E-mail, tipo `WORK` |
 | `PHONE` | WhatsApp em `+55...`, tipo `MOBILE` |
@@ -114,13 +119,13 @@ O Bitrix é um caminho extra. Se o webhook do n8n responder bem e o Bitrix falha
   "aceite_termos": true,
   "aceite_comunicacoes": false,
   "consentimento_em": "2026-10-02T13:40:00.120Z",
-  "ref": "POST-01",
+  "ref": "2026-10-bpmn",
   "utm_source": "instagram",
   "utm_medium": "organico",
-  "utm_campaign": "processo",
-  "utm_term": "PROCESSO",
+  "utm_campaign": "bpmn",
+  "utm_term": "PROCESSOS",
   "utm_content": "reels",
-  "page_url": "https://www.multiatend.com.br/lp-captura?ref=POST-01&utm_source=instagram&utm_medium=organico&utm_campaign=processo&utm_term=PROCESSO&utm_content=reels",
+  "page_url": "https://www.multiatend.com.br/lp-captura?ref=2026-10-bpmn&utm_source=instagram&utm_medium=organico&utm_campaign=bpmn&utm_term=PROCESSOS&utm_content=reels",
   "referrer": "https://www.instagram.com/",
   "timestamp": "2026-10-02T13:40:00.000Z",
   "received_at": "2026-10-02T13:40:00.120Z"
