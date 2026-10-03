@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08080F">
+<title>Exclusão de dados | MultiAtend</title>
+<meta name="description" content="Como pedir a exclusão dos seus dados pessoais tratados pela MultiAtend. Envie um e-mail para contato@multiatend.com.br.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://multiatend.com.br/exclusao-de-dados">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="MultiAtend">
+<meta property="og:url" content="https://multiatend.com.br/exclusao-de-dados">
+<meta property="og:title" content="Exclusão de dados | MultiAtend">
+<meta property="og:description" content="Instruções para pedir a exclusão dos dados pessoais tratados pela MultiAtend.">
+<link rel="icon" href="/Disigner/LOGO/svg/multiatend_icone_gradiente-preto.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #7C3AED;
+  --purple-light: #A78BFA;
+  --bg: #08080F;
+  --bg-card: #111120;
+  --text-1: #FFFFFF;
+  --text-2: #CBD5E1;
+  --text-3: #64748B;
+  --border: rgba(124, 58, 237, 0.15);
+  --fonte: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --largura: 680px;
+  --nav-h: 72px;
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  color: var(--text-2);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(520px 340px at 50% -160px, rgba(124, 58, 237, 0.3), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
+}
+a { color: var(--purple-light); text-underline-offset: 2px; }
+a:hover { color: #C4B5FD; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--purple-light); outline-offset: 3px; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { color: #1e293b; text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--purple); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-nav-demo {
+  padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  background: transparent; color: #1e293b; border: 1px solid rgba(0, 0, 0, 0.14);
+  text-decoration: none; display: inline-flex; align-items: center; transition: all .2s;
+}
+.btn-nav-demo:hover { border-color: var(--purple); color: var(--purple); }
+.btn-nav-cta {
+  padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  background: #0f172a; color: #fff; border: none; text-decoration: none;
+  display: inline-flex; align-items: center; transition: all .2s;
+}
+.btn-nav-cta:hover { background: #1e293b; color: #fff; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 8px; background: none; border: none;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: #1e293b; border-radius: 2px; }
+.mobile-menu {
+  display: none; position: fixed; top: calc(var(--nav-h) + 8px); left: 16px; right: 16px;
+  background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 18px;
+  z-index: 999; padding: 12px; flex-direction: column; gap: 4px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: #1e293b; text-decoration: none; font-size: 15px; font-weight: 500;
+  padding: 12px 14px; border-radius: 10px; min-height: 44px;
+}
+.mobile-menu a:hover { background: rgba(124, 58, 237, 0.06); color: var(--purple); }
+
+main {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 40px + env(safe-area-inset-top)) 20px calc(72px + env(safe-area-inset-bottom));
+}
+.volta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--text-3); font-size: 14px; font-weight: 500; text-decoration: none;
+}
+.volta:hover { color: var(--purple-light); }
+.atualizacao { color: var(--text-3); font-size: 14px; margin: 8px 0 0; }
+h1, h2 { color: var(--text-1); letter-spacing: -0.02em; line-height: 1.2; }
+h1 { margin: 8px 0 12px; font-size: clamp(1.75rem, 7vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; }
+p, li { color: var(--text-2); font-size: 1rem; }
+p { margin: 0 0 14px; }
+strong { color: var(--text-1); font-weight: 600; }
+.pedido {
+  margin-top: 28px;
+  padding: 8px 22px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple);
+  border-radius: 16px;
+}
+.pedido p:first-child { margin-top: 16px; }
+
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 40px 0 calc(28px + env(safe-area-inset-bottom));
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  max-width: 1160px; margin: 0 auto; padding: 0 24px;
+}
+.footer-logo { height: 26px; width: auto; display: block; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { color: var(--text-3); text-decoration: none; font-size: 14px; font-weight: 500; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { color: var(--text-3); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 640px) {
+  .btn-nav-demo { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+@media (min-width: 640px) {
+  main { padding-top: calc(var(--nav-h) + 56px); }
+  p, li { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" aria-label="MultiAtend — Início">
+      <img class="nav-logo" src="/Disigner/LOGO/png/multiatend_horizontal_gradiente-branco.png" alt="MultiAtend" width="1004" height="161">
+    </a>
+    <div class="nav-links">
+      <a href="/#como-funciona">Como funciona</a>
+      <a href="/preco">Preços</a>
+      <a href="/#depoimentos">Depoimentos</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/#agendar" class="btn-nav-demo">Agendar demo</a>
+      <a href="https://app.multiatend.com.br/login" class="btn-nav-cta">Entrar</a>
+    </div>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#como-funciona">Como funciona</a>
+  <a href="/preco">Preços</a>
+  <a href="/#depoimentos">Depoimentos</a>
+  <a href="/blog">Blog</a>
+  <a href="/#agendar">Agendar demo</a>
+  <a href="https://app.multiatend.com.br/login">Entrar</a>
+</div>
+
+<main>
+  <a class="volta" href="/privacidade">← Política de Privacidade</a>
+  <h1>Como pedir a exclusão dos seus dados</h1>
+  <p class="atualizacao">Última atualização: outubro de 2026</p>
+  <p>Esta página explica como pedir a exclusão dos dados pessoais tratados pela MultiAtend no site, no formulário de captura e na automação do Instagram de @brunorodinger. A política completa está em <a href="/privacidade">/privacidade</a>.</p>
+
+  <div class="pedido">
+    <p>Envie um e-mail para <a href="mailto:contato@multiatend.com.br?subject=Exclus%C3%A3o%20de%20dados">contato@multiatend.com.br</a> com o assunto <strong>Exclusão de dados</strong>. Informe o nome de usuário do Instagram ou, se o contato foi pelo formulário, o e-mail ou o WhatsApp usados nele.</p>
+    <p>A exclusão é feita em até 15 dias, com confirmação por e-mail.</p>
+  </div>
+
+  <p>O mesmo passo a passo também aparece na política, em <a href="/privacidade#exclusao-de-dados">Como pedir a exclusão dos seus dados</a>.</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" aria-label="MultiAtend — Início">
+      <img class="footer-logo" src="/Disigner/LOGO/png/multiatend_horizontal_gradiente-preto.png" alt="MultiAtend" width="1004" height="161">
+    </a>
+    <div class="footer-links">
+      <a href="/">Início</a>
+      <a href="/preco">Preços</a>
+      <a href="/blog">Blog</a>
+      <a href="/privacidade">Privacidade</a>
+      <a href="/exclusao-de-dados" aria-current="page">Exclusão de dados</a>
+      <a href="/termos">Termos</a>
+    </div>
+    <span class="footer-copy">© 2026 MultiAtend. Todos os direitos reservados.</span>
+  </div>
+</footer>
+<script>
+(function () {
+  var botao = document.getElementById("hamburger");
+  var menu = document.getElementById("mobileMenu");
+  if (!botao || !menu) return;
+  botao.addEventListener("click", function () {
+    var aberto = menu.classList.toggle("open");
+    botao.setAttribute("aria-expanded", aberto ? "true" : "false");
+    botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+  });
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      menu.classList.remove("open");
+      botao.setAttribute("aria-expanded", "false");
+      botao.setAttribute("aria-label", "Abrir menu");
+    });
+  });
+})();
+</script>
+</body>
+</html>

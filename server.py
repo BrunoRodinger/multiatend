@@ -32,10 +32,22 @@ class MultiAtendHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Content-Length", "0")
             self.end_headers()
             return
+        if path_only in ("/lgpd", "/lgpd/"):
+            self.send_response(301)
+            self.send_header("Location", "/privacidade" + suffix)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         if path_only in ("/lp-captura", "/lp-captura/"):
             self.path = "/lp-captura/index.html" + suffix
         elif path_only in ("/lp-captura/privacidade", "/lp-captura/privacidade/"):
             self.path = "/lp-captura/privacidade.html" + suffix
+        elif path_only in ("/privacidade", "/privacidade/"):
+            self.path = "/privacidade.html" + suffix
+        elif path_only in ("/termos", "/termos/"):
+            self.path = "/termos.html" + suffix
+        elif path_only in ("/exclusao-de-dados", "/exclusao-de-dados/"):
+            self.path = "/exclusao-de-dados.html" + suffix
         elif self.path in ("/preco", "/preco/"):
             self.path = "/preco.html"
         elif self.path in ("/blog", "/blog/"):

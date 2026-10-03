@@ -11,6 +11,11 @@
       "source": "/captura/:path*",
       "destination": "/lp-captura/:path*",
       "permanent": false
+    },
+    {
+      "source": "/lgpd",
+      "destination": "/privacidade",
+      "permanent": true
     }
   ]
 }
