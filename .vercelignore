@@ -1,0 +1,6 @@
+# Arquivos que não vão para o deploy da Vercel (o site é estático e
+# publica tudo o que estiver no repositório).
+# Documentação interna, como lp-captura/README.md
+*.md
+# Servidor só para rodar o site no computador
+server.py
