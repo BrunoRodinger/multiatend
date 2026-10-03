@@ -4,7 +4,7 @@
   Para um post novo, inclua uma linha:
     "2026-11-tema": { titulo: "Título do guia", arquivo: "/materiais/nome-do-arquivo.pdf" },
   O ref é comparado em minúsculas. "default" vale para ref desconhecido ou sem ref.
-  Os PDFs ficam em public/materiais e abrem em /materiais/... (rewrite no vercel.json).
+  Os PDFs ficam na pasta /materiais, na raiz do projeto.
 */
 window.MATERIAIS = {
   "2026-10-bpmn": {
